@@ -27,6 +27,7 @@ declare module 'vue' {
     DocumentSelect: typeof import('./src/components/DocumentSelect.vue')['default']
     DownloadIcon: typeof import('./src/components/icons/DownloadIcon.vue')['default']
     EarthIcon: typeof import('./src/components/icons/EarthIcon.vue')['default']
+    EditIcon: typeof import('./src/components/icons/EditIcon.vue')['default']
     ExitIcon: typeof import('./src/components/icons/ExitIcon.vue')['default']
     FAQExpansion: typeof import('./src/components/faq/FAQExpansion.vue')['default']
     FAQForm: typeof import('./src/components/faq/FAQForm.vue')['default']

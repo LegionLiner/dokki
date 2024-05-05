@@ -125,24 +125,23 @@
         </v-data-table>
         <FlexibleTable v-else :headers="headers" :items="templates">
           <template #item.actions="{ row: { id } }">
-            <div class="d-flex gc-1 gr-2 flex-wrap">
-              <v-btn
-                link
-                color="primary"
-                class="v-btn-action"
-                variant="flat"
-                size="x-small"
-                :to="{ name: `admin.templates.edit`, params: { id } }"
-                >{{ $t("edit") }}</v-btn
-              >
-              <v-btn
-                color="red"
-                class="v-btn-action"
-                variant="flat"
-                size="x-small"
-                @click="deleteId = id"
-                >{{ $t("delete") }}</v-btn
-              >
+            <div class="d-flex flex-wrap ga-2 ga-sm-1 mb-2 my-lg-2">
+              <v-btn link color="primary" class="v-btn-action" variant="flat" size="x-small" :class="{
+                'v-btn-action__icon': isShort,
+              }" :to="{ name: `admin.templates.edit`, params: { id } }">
+                <EditIcon v-if="isShort" />
+                <template v-else>
+                  {{ $t("edit") }}
+                </template>
+              </v-btn>
+              <v-btn color="red" class="v-btn-action" variant="flat" size="x-small" :class="{
+                'v-btn-action__icon': isShort,
+              }" @click="deleteId = id">
+                <TrashIcon v-if="isShort" />
+                <template v-else>
+                  {{ $t("delete") }}
+                </template>
+              </v-btn>
             </div>
           </template>
         </FlexibleTable>
@@ -197,6 +196,8 @@ import { DEFAULT_DATE_TEMPLATE, type SelectItem } from "@/types";
 import { DocTypes, Categories } from "@/dict";
 import FlexibleTable from "@components/FlexibleTable.vue";
 import Pagination from "@components/Pagination.vue";
+import EditIcon from "@components/icons/EditIcon.vue";
+import TrashIcon from "@components/icons/TrashIcon.vue";
 
 interface TableItem {
   id: number;
@@ -219,6 +220,7 @@ interface Header {
 const { t } = useI18n();
 const toast = useToast();
 const display = useDisplay();
+const isShort = computed<boolean>(() => display.width.value < 1600);
 const route = useRoute();
 const router = useRouter();
 const lgAndUp = computed<boolean>(() => display.lgAndUp.value);

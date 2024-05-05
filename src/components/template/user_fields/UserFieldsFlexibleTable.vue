@@ -84,40 +84,45 @@
       />
     </template>
     <template #item.actions="{ row: { id } }">
-      <div class="d-flex gc-1 gr-2 flex-wrap">
-        <v-btn
-          color="primary"
-          class="v-btn-action"
-          variant="flat"
-          size="x-small"
-          @click="$emit(`edit`, id)"
-          >{{ $t("edit") }}</v-btn
-        >
-        <v-btn
-          class="v-btn-action"
-          variant="outlined"
-          size="x-small"
-          @click="$emit(`duplicate`, id)"
-          >{{ $t("duplicate") }}</v-btn
-        >
-        <v-btn
-          color="red"
-          class="v-btn-action"
-          variant="flat"
-          size="x-small"
-          @click="$emit(`delete`, id)"
-          >{{ $t("delete") }}</v-btn
-        >
+      <div class="d-flex flex-wrap ga-2 ga-sm-1 mb-2 my-lg-2">
+        <v-btn color="primary" class="v-btn-action" variant="flat" size="x-small" :class="{
+          'v-btn-action__icon': isShort,
+        }" @click="$emit(`edit`, id)">
+        <EditIcon v-if="isShort" />
+          <template v-else>
+            {{ $t("edit") }}
+          </template>
+          </v-btn>
+        <v-btn class="v-btn-action" color="primary" variant="flat" size="x-small"  :class="{
+          'v-btn-action__icon': isShort,
+        }" @click="$emit(`duplicate`, id)">
+          <CopyIcon v-if="isShort" />
+          <template v-else>
+            {{ $t("duplicate") }}
+          </template>
+        </v-btn>
+        <v-btn color="red" variant="flat" size="x-small" class="v-btn-action" :class="{
+          'v-btn-action__icon': isShort,
+        }" @click="$emit(`delete`, id)">
+          <TrashIcon v-if="isShort" />
+          <template v-else>
+            {{ $t("delete") }}
+          </template>
+        </v-btn>
       </div>
     </template>
   </FlexibleTable>
 </template>
 <script lang="ts" setup>
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, computed } from "vue";
 import type { UserField } from "@services/types";
 import FlexibleTable from "@/components/FlexibleTable.vue";
 import { Sources } from "@/dict";
 import type { SourceItem } from "@/dict/types";
+import EditIcon from "@components/icons/EditIcon.vue";
+import CopyIcon from "@components/icons/CopyIcon.vue";
+import TrashIcon from "@components/icons/TrashIcon.vue";
+import { useDisplay } from "vuetify";
 
 interface Header {
   title: string;
@@ -134,6 +139,10 @@ type Memoized = Pick<UserField, "displayOrder">;
 
 const props = defineProps<Props>();
 defineEmits(["delete", "edit", "duplicate"]);
+
+const display = useDisplay();
+const isShort = computed<boolean>(() => display.width.value < 1600);
+
 const sources = ref<SourceItem[]>(Sources);
 const memoized = ref<Memoized[]>([]);
 

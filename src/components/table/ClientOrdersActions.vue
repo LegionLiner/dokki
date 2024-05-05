@@ -25,7 +25,7 @@
       </template>
     </v-btn>
   </div>
-  <div v-if="isMobile" @click="opened = !opened" ref="wrapperRef" class="d-flex ga-2 ga-sm-1 my-lg-2 mobile-actions"
+  <div v-if="isMobile" @click="opened = !opened" ref="wrapperRef" class="d-flex my-lg-2 mobile-actions"
     :class="{ 'active': opened }">
     {{ $t("actions") }}
     <i class="mdi-chevron-down mdi v-icon notranslate v-theme--LightTheme v-icon--size-default"></i>
@@ -123,6 +123,7 @@ document.addEventListener('click', (e: any) => {
   user-select: none;
   width: 80px;
   position: relative;
+  justify-content: space-between;
   border: 1px solid rgba(227, 241, 253, 1);
   border-radius: 5px;
   padding: 8px;

@@ -4,9 +4,6 @@
   "author": "br4instormer",
   "license": "UNLICENSED",
   "private": true,
-  "engines": {
-    "node": "~18.20.2"
-  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
