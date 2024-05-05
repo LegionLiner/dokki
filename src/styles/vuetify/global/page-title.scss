@@ -1,0 +1,7 @@
+.page-title {
+  font-size: 27px;
+
+  @media #{map-get($display-breakpoints, 'md-and-down')} {
+    font-weight: 700;
+  }
+}

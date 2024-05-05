@@ -1,0 +1,9 @@
+.subheader {
+  font-size: 1.17rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 0.92rem;
+  }
+}

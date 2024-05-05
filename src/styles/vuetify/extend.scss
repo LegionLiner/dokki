@@ -1,0 +1,23 @@
+// https://vuetifyjs.com/features/sass-variables/`
+@forward 'vuetify/settings' with ($font-size-root: 12px,
+  $application-color: #383838,
+  $table-font-size: 1rem,
+  $field-font-size: 1rem,
+  $list-item-nav-title-font-size: 13px,
+  $list-item-nav-title-font-weight: 400,
+  $list-item-one-line-min-height: 36px,
+  $navigation-drawer-color: #171717,
+  $navigation-drawer-border-thin-width: 0,
+  $bottom-navigation-color: rgba(rgb(87, 87, 87), var(--v-high-emphasis-opacity)),
+  $field-border-radius: 10px,
+  $button-border-radius: 10px,
+  $input-density: ('default': 0, 'comfortable': -2, 'compact': -4));
+
+@import "btn/index.scss";
+@import "select/index.scss";
+@import "pagination/index.scss";
+@import "link/index.scss";
+@import "input/index.scss";
+@import "global/index.scss";
+@import "list/index.scss";
+@import "table/index.scss";

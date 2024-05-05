@@ -1,0 +1,31 @@
+.v-table {
+  @mixin cell() {
+    @media (max-width: 1410px) {
+      padding: 0.17rem 1rem;
+    }
+
+    @media (min-width: 1411px) {
+      padding: 0.17rem 2rem;
+    }
+  }
+
+  >.v-table__wrapper {
+    >table {
+      >tbody {
+        >tr {
+          >td {
+            @include cell();
+          }
+        }
+      }
+
+      >thead {
+        >tr {
+          >th {
+            @include cell();
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import "../vars.scss";
+
+.v-select {
+  &-white {
+    background-color: $select-background;
+  }
+
+  &--selected {
+    .v-field--active {
+      .v-field__field {
+        font-size: 1rem;
+      }
+    }
+  }
+}

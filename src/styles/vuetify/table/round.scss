@@ -1,0 +1,25 @@
+.v-table {
+  $cell_color: #fff;
+
+  @mixin cell() {
+    background-color: $cell_color;
+
+    &:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+
+    &:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+
+  &--round {
+    .v-data-table__th {
+      @include cell();
+    }
+
+    .v-data-table__td {
+      @include cell();
+    }
+  }
+}

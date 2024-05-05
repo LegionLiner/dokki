@@ -1,0 +1,9 @@
+.v-table {
+  &--spacing {
+    >.v-table__wrapper {
+      >table {
+        border-spacing: 0 .67rem;
+      }
+    }
+  }
+}

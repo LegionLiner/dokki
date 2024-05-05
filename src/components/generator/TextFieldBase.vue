@@ -1,0 +1,9 @@
+<template>
+  <v-text-field
+    hide-details
+    required
+    density="compact"
+    variant="outlined"
+    bg-color="#fff"
+  />
+</template>

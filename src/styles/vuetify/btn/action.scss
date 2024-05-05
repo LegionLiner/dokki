@@ -1,0 +1,23 @@
+.v-btn {
+  $el: ".v-btn";
+
+  &-action {
+    border-radius: 10px;
+
+    &#{$el} {
+      &--size {
+        &-x-small {
+          font-size: .75rem;
+          font-weight: 500;
+          padding: 2px 2px;
+          height: 24px;
+          min-width: 58px;
+        }
+      }
+    }
+
+    &__icon {
+      min-width: 32px !important;
+    }
+  }
+}

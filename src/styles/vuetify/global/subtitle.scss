@@ -1,0 +1,9 @@
+.subtitle {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 14px;
+  }
+}

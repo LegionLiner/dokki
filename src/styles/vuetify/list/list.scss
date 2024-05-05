@@ -1,0 +1,29 @@
+.v-list-item {
+  $element: ".v-list-item";
+
+  &--pointer {
+    cursor: pointer;
+  }
+
+  &--nav {
+    &#{$element} {
+      &--sidebar {
+        #{$element} {
+          &-title {
+            line-height: 1.2em;
+          }
+        }
+
+        &#{$element}--active#{$element}--link {
+          color: $nav-sidebar-active-color;
+
+          svg {
+            path {
+              fill: $nav-bottom-active-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "vuetify/lib/styles/settings/_variables";
+
+.image-bg {
+  background: url("@/assets/img/mainBg.png") center no-repeat;
+  background-position: bottom right;
+  background-size: 424px 600px;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    background-image: none;
+  }
+}

@@ -1,0 +1,19 @@
+@mixin br($br: 4px) {
+  border-radius: $br;
+}
+
+.br-4 {
+  @include br(4px);
+}
+
+.br-8 {
+  @include br(8px);
+}
+
+.br-16 {
+  @include br(16px);
+}
+
+.text-16 {
+  font-size: 1.33rem;
+}

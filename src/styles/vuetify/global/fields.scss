@@ -1,0 +1,38 @@
+@import "vuetify/lib/styles/settings/_variables";
+
+$label-width-lg: 168px;
+$label-width-md: 120px;
+
+.fields {
+  display: grid;
+  grid-template-columns: $label-width-lg 1fr;
+  align-items: center;
+  row-gap: 6px;
+
+  @media #{map-get($display-breakpoints, 'md-and-down')} {
+    grid-template-columns: $label-width-md 1fr;
+  }
+}
+
+.checkbox {
+  &-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &-item {
+    max-width: var(--v-selection-control-size);
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs')} {
+  .fields {
+    display: block;
+    gap: 2px;
+
+    &>*:not(label) {
+      margin-bottom: 8px;
+    }
+  }
+}

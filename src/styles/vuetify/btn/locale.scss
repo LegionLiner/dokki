@@ -1,0 +1,19 @@
+.v-btn.locale {
+  font-weight: 400;
+
+  &_medium {
+    font-size: .88rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 32px;
+  }
+
+  &.v-btn--active {
+    color: rgb(var(--v-theme-primary)) !important;
+    cursor: default;
+  }
+
+  &:not(&.v-btn--active) {
+    opacity: .5;
+  }
+}
