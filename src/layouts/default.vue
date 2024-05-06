@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, markRaw, ref } from "vue";
+import { computed, markRaw, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import * as Icon from "@components/icons";
@@ -40,7 +40,7 @@ const userStore = useUserStore();
 const openedAtStart = computed<string[]>(() => [t("links.services")]);
 const isAdmin = computed<boolean>(() => userStore.userType === "ADMIN");
 const opened = ref<string[]>(openedAtStart.value);
-const selected = ref<string[]>([]);
+const selected = ref<string[]>(['docs']);
 const sidebarShow = ref<boolean>();
 const router = useRouter();
 

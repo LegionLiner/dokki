@@ -108,13 +108,25 @@ const btnStyle = computed(() => {
 @import "vuetify/lib/styles/settings/_variables";
 
 .v-bottom-navigation {
+  &--active {
+      box-shadow: none !important;
+  }
   .v-btn {
     svg {
       width: 40px;
       height: 40px;
     }
+    @media (width < 600px) {
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
 
     &--active {
+      & > .v-btn__overlay {
+        opacity: 0 !important;
+      }
       svg {
         path {
           fill: $nav-bottom-active-color;
@@ -153,16 +165,16 @@ const btnStyle = computed(() => {
     height: 60px !important;
     .v-btn {
       svg {
-        width: 32px;
-        height: 32px;
+        width: 25px;
+        height: 25px;
       }
     }
 
     &__content {
       & > .v-btn {
-        padding: 0;
-        max-width: none;
-        min-width: 36px;
+        padding: 11px !important;
+        max-width: none !important;
+        min-width: 36px !important;
       }
     }
   }

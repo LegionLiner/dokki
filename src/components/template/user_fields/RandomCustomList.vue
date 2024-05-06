@@ -7,7 +7,7 @@
     hide-details
     density="compact"
     bg-color="#fff"
-    variant="plain"
+    variant="outlined"
     :model-value="modelValue"
     :loading="loading"
     :placeholder="$t(`labels.list`)"

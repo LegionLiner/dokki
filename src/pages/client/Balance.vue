@@ -27,6 +27,7 @@
           :headers="headers"
           :loading="loading"
           :items="items"
+          :isBalance="true"
         >
           <template #item.operationType="{ cell }">
             <OperationTypeComponent :operation-type="cell.value" />

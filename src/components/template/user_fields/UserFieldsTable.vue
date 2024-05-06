@@ -21,47 +21,20 @@
       <v-text-field hide-details variant="plain" v-model="item.tag" :placeholder="column.title" />
     </template>
     <template #item.isFile="{ item }">
-      <v-checkbox v-model="item.isFile" hide-details density="compact" />
+      <v-checkbox v-model="item.isFile" hide-details density="compact" v-if="!isShort" />
     </template>
     <template #item.needToReverseText="{ item }">
-      <v-checkbox v-model="item.needToReverseText" hide-details density="compact" />
+      <v-checkbox v-model="item.needToReverseText" hide-details density="compact" v-if="!isShort" />
     </template>
     <template #item.isHidden="{ item }">
-      <v-checkbox v-model="item.isHidden" hide-details density="compact" />
+      <v-checkbox v-model="item.isHidden" hide-details density="compact" v-if="!isShort" />
     </template>
     <template #item.source="{ item }">
       <v-select hide-details density="compact" bg-color="#fff" v-model="item.source" variant="plain"
         :placeholder="$t(`selectSource`)" :items="sources" />
     </template>
     <template #item.actions="{ item }">
-      <div class="d-flex flex-wrap ga-2 ga-sm-1 mb-2 my-lg-2">
-        <v-btn color="success" class="v-btn-action" variant="flat" size="x-small" :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`edit`, item.id)">
-        <PlayIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("edit") }}
-          </template>
-          </v-btn>
-
-        <v-btn color="primary" class="v-btn-action" variant="flat" size="x-small"  :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`duplicate`, item.id)">
-          <CopyIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("duplicate") }}
-          </template>
-        </v-btn>
-
-        <v-btn color="red" variant="flat" size="x-small" class="v-btn-action" :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`delete`, item.id)">
-          <TrashIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("delete") }}
-          </template>
-        </v-btn>
-      </div>
+      <ItemActions :id="item.id" @itemEdit="$emit(`edit`, item.id)" @itemDuplicate="$emit(`duplicate`, item.id)" @itemDelete="$emit(`delete`, item.id)"></ItemActions>
     </template>
   </v-data-table>
 </template>
@@ -70,10 +43,8 @@ import { ref, watchEffect, computed } from "vue";
 import { Sources } from "@/dict";
 import type { UserField } from "@services/types";
 import type { SourceItem } from "@/dict/types";
+import ItemActions from './ItemActions.vue';
 import { useDisplay } from "vuetify";
-import PlayIcon from "@components/icons/PlayIcon.vue";
-import CopyIcon from "@components/icons/CopyIcon.vue";
-import TrashIcon from "@components/icons/TrashIcon.vue";
 
 interface Header {
   title: string;
@@ -94,11 +65,11 @@ interface Props {
 const props = defineProps<Props>();
 defineEmits(["delete", "duplicate", "edit"]);
 
-const display = useDisplay();
-const isShort = computed<boolean>(() => display.width.value < 1600);
 
 const sources = ref<SourceItem[]>(Sources);
 const memoized = ref<Memoized[]>([]);
+const { width } = useDisplay();
+const isShort = computed<boolean>(() => width.value < 1450);
 
 const memoizeOrder = (index: number, value: string) => {
   if (/^[+-]?\d+$/.test(value)) {
@@ -124,3 +95,36 @@ watchEffect(() => {
   memoized.value = props.items.map(({ displayOrder }) => ({ displayOrder }));
 });
 </script>
+
+<style lang="scss">
+.v-table > .v-table__wrapper > table > thead > tr:last-child > th:last-child {
+  width: 100px !important;
+}
+.v-table > .v-table__wrapper > table > thead > tr:last-child > th:first-child {
+  width: 70px !important;
+}
+.v-table > .v-table__wrapper > table > thead > tr:last-child {
+  > th:nth-child(5) {
+    width: 150px !important;
+  }
+  > th:nth-child(6), > th:nth-child(7), > th:nth-child(8) {
+    width: 80px !important;
+
+    @media (width < 1450px) {
+      display: none;
+    }
+  }
+  > th:nth-child(9) {
+    width: 240px !important;
+  }
+}
+.v-table > .v-table__wrapper > table > tbody > tr {
+  > td:nth-child(6), > td:nth-child(7), > td:nth-child(8) {
+    width: 80px !important;
+
+    @media (width < 1450px) {
+      display: none;
+    }
+  }
+}
+</style>

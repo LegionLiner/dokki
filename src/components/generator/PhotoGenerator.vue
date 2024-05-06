@@ -22,7 +22,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import ConstructorComp from "@components/ConstructorComp.vue";
 import type { UserFieldShort, TemplateShort } from "@/services/types";
 
@@ -102,7 +102,7 @@ watch(
     margin-top: -10px;
 
     @media (max-width: 780px) {
-      display: block;
+      flex-direction: column;
     }
   }
 }

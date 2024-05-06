@@ -40,8 +40,11 @@
         <div class="element" @click="$emit(`delete`, modelValue.id)">
           {{ $t("delete") }}
         </div>
-        <div class="element" @click="download">
+        <div class="element" @click.stop="$emit(`fetchFile`, modelValue.id)">
           {{ $t("download") }}
+        </div>
+        <div v-for="file in props.files" class="element" :key="file.id" @click="download(file)">
+          {{ file.name }}
         </div>
       </div>
     </teleport>
@@ -63,11 +66,12 @@ interface TableItem {
 
 interface Props {
   modelValue: TableItem;
+  files: any[];
   downloadFileUrl: string;
 }
 
 const props = defineProps<Props>();
-const emits = defineEmits(["run", "delete", "copy"]);
+const emits = defineEmits(["run", "delete", "copy", "fetchFile"]);
 
 
 const { width } = useDisplay();
@@ -89,8 +93,8 @@ function copy() {
     emits("copy", props.modelValue.id);
   }
 }
-function download() {
-  window.open(props.downloadFileUrl, '_blank');
+function download(file: { oneTimeToken: any; }) {  
+  window.open(`${props.downloadFileUrl}${file.oneTimeToken}`, '_blank');
 }
 
 document.addEventListener('click', (e: any) => {
@@ -118,7 +122,7 @@ document.addEventListener('click', (e: any) => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mobile-actions {
   user-select: none;
   width: 80px;
@@ -135,6 +139,15 @@ document.addEventListener('click', (e: any) => {
     width: 67px;
     padding: 8px 4px;
     gap: 2px;
+  }
+  @media (width < 450px) {
+    width: 47px;
+    padding: 8px 4px;
+    gap: 2px;
+
+    i {
+      display: none;
+    }
   }
 
   i {
@@ -171,9 +184,16 @@ i::before {
   border-radius: 5px;
   padding: 2px;
   z-index: 1000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media (width < 600px) {
     width: 67px;
+    gap: 2px;
+  }
+  @media (width < 450px) {
+    width: 47px;
     gap: 2px;
   }
 
@@ -182,6 +202,9 @@ i::before {
     color: #383838;
     border-radius: 5px;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &[disabled=true] {
       color: rgba(155, 171, 200, 1);

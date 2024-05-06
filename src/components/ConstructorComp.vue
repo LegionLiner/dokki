@@ -1,45 +1,23 @@
 <template>
-  <div
-    class="DocsGen__photo"
-    :style="{ width: propsWH.W ? +propsWH.W + 50 + 'px' : '' }"
-  >
+  <div class="DocsGen__photo" :style="{ width: propsWH.W ? +propsWH.W + 50 + 'px' : '' }">
     <div class="subtitle mb-5 d-flex align-center">
       {{ $t("photo") }}
-      <v-btn
-        v-if="!hideRandomBtn"
-        color="primary"
-        variant="outlined"
-        class="randomPhoto hideBeforeMd ml-2"
-        size="small"
-        rounded="lg"
-        @click="dialog = true"
-        >{{ $t("randomPhoto") }}
-      </v-btn>
     </div>
     <div class="DocsGen__photo-box">
       <label for="upload-input" id="initial-upload" class="upload-btn mb-4">
         <span class="">{{ $t("labels.file") }}</span>
         <span></span>
       </label>
-      <div
-        class="main-container-ww"
-        style="position: relative; width: fit-content"
-      >
-        <div
-          class="main-container"
-          :style="{
-            '--width': propsWH.W + 'px',
-            '--height': propsWH.H + 'px',
-            width: propsWH.W ? propsWH.W + 'px' : '',
-            height: propsWH.H ? propsWH.H + 'px' : '',
-          }"
-        >
+      <div class="main-container-ww" style="position: relative; width: fit-content">
+        <div class="main-container" :style="{
+          '--width': propsWH.W + 'px',
+          '--height': propsWH.H + 'px',
+          width: propsWH.W ? propsWH.W + 'px' : '',
+          height: propsWH.H ? propsWH.H + 'px' : '',
+        }">
           <div class="drag-area" />
         </div>
-        <img
-          src="@assets/constructor/img/Ellipse6.png"
-          alt=""
-          style="
+        <img src="@assets/constructor/img/Ellipse6.png" alt="" style="
             position: absolute;
             z-index: 2;
             top: 4px;
@@ -47,22 +25,13 @@
             width: 100%;
             height: 85%;
             pointer-events: none;
-          "
-        />
+          " />
       </div>
 
-      <v-btn
-        v-if="!hideRandomBtn"
-        color="primary"
-        variant="outlined"
-        class="w-100 mt-4 hideOnMd"
-        rounded="lg"
-        @click="
-          () => {
-            dialog = true;
-          }
-        "
-        >{{ $t("randomPhoto") }}
+      <v-btn v-if="!hideRandomBtn" color="primary" variant="outlined" class="w-100 mt-4" rounded="lg" @click="() => {
+          dialog = true;
+        }
+        ">{{ $t("randomPhoto") }}
       </v-btn>
       <input id="myInput" type="text" style="visibility: hidden; height: 1px" />
     </div>
@@ -75,41 +44,14 @@
         <div class="DocsGen__photo-changes-zoom" id="cropper-zoom-in-btn">
           <BtnRedactor :nofill="true">
             <template #icon>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M21.0004 21.0004L16.6504 16.6504"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M11 8V14"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 11H14"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                  stroke="#188BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.0004 21.0004L16.6504 16.6504" stroke="#188BF1" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M11 8V14" stroke="#188BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 11H14" stroke="#188BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </template>
           </BtnRedactor>
@@ -117,34 +59,13 @@
         <div class="DocsGen__photo-changes-zoom" id="cropper-zoom-out-btn">
           <BtnRedactor :nofill="true">
             <template #icon>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M21.0004 21.0004L16.6504 16.6504"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 11H14"
-                  stroke="#188BF1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                  stroke="#188BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.0004 21.0004L16.6504 16.6504" stroke="#188BF1" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M8 11H14" stroke="#188BF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </template>
           </BtnRedactor>
@@ -155,189 +76,88 @@
 
         <div class="filters-controls mb-4">
           <div class="filters-left-col">
-            <div
-              v-show="activeSlider === 'Brightness'"
-              class="filter-range-slider"
-            >
+            <div v-show="activeSlider === 'Brightness'" class="filter-range-slider">
               <div class="myRange">
-                <div
-                  class="myRange-fon"
-                  style="--textValue: &quot;123&quot;"
-                ></div>
-                <input
-                  type="range"
-                  value="100"
-                  data-startValue="100"
-                  min="0"
-                  max="200"
-                  class="custom-range"
-                  id="brightness"
-                />
+                <div class="myRange-fon" style="--textValue: &quot;123&quot;"></div>
+                <input type="range" value="100" data-startValue="100" min="0" max="200" class="custom-range"
+                  id="brightness" />
               </div>
             </div>
-            <div
-              v-show="activeSlider === 'Contrast'"
-              class="filter-range-slider"
-            >
+            <div v-show="activeSlider === 'Contrast'" class="filter-range-slider">
               <div class="myRange">
                 <div class="myRange-fon"></div>
-                <input
-                  type="range"
-                  value="100"
-                  data-startValue="100"
-                  min="0"
-                  max="200"
-                  class="custom-range"
-                  id="contrast"
-                />
+                <input type="range" value="100" data-startValue="100" min="0" max="200" class="custom-range"
+                  id="contrast" />
               </div>
             </div>
-            <div
-              v-show="activeSlider === 'Saturation'"
-              class="filter-range-slider"
-            >
+            <div v-show="activeSlider === 'Saturation'" class="filter-range-slider">
               <div class="myRange">
                 <div class="myRange-fon"></div>
-                <input
-                  type="range"
-                  value="100"
-                  data-startValue="100"
-                  min="0"
-                  max="200"
-                  class="custom-range"
-                  id="saturation"
-                />
+                <input type="range" value="100" data-startValue="100" min="0" max="200" class="custom-range"
+                  id="saturation" />
               </div>
             </div>
-            <div
-              v-show="activeSlider === 'Inversion'"
-              class="filter-range-slider"
-            >
+            <div v-show="activeSlider === 'Inversion'" class="filter-range-slider">
               <div class="myRange">
                 <div class="myRange-fon"></div>
-                <input
-                  type="range"
-                  value="0"
-                  data-startValue="0"
-                  min="0"
-                  max="100"
-                  class="custom-range"
-                  id="inversion"
-                />
+                <input type="range" value="0" data-startValue="0" min="0" max="100" class="custom-range"
+                  id="inversion" />
               </div>
             </div>
             <div v-show="activeSlider === 'Blur'" class="filter-range-slider">
               <div class="myRange">
                 <div class="myRange-fon"></div>
-                <input
-                  type="range"
-                  value="0"
-                  data-startValue="0"
-                  min="0"
-                  max="20"
-                  class="custom-range"
-                  id="blur"
-                />
+                <input type="range" value="0" data-startValue="0" min="0" max="20" class="custom-range" id="blur" />
               </div>
             </div>
             <div v-show="activeSlider === 'Hue'" class="filter-range-slider">
               <div class="myRange">
                 <div class="myRange-fon"></div>
-                <input
-                  type="range"
-                  value="0"
-                  data-startValue="0"
-                  min="0"
-                  max="360"
-                  class="custom-range"
-                  id="hue"
-                />
+                <input type="range" value="0" data-startValue="0" min="0" max="360" class="custom-range" id="hue" />
               </div>
             </div>
           </div>
 
           <div class="filter-btns mt-3 mt-md-4">
-            <BtnRedactor
-              type="stroke"
-              @click="activeSlider = 'Brightness'"
-              :class="{ active: activeSlider === 'Brightness' }"
-            >
+            <BtnRedactor type="stroke" @click="activeSlider = 'Brightness'"
+              :class="{ active: activeSlider === 'Brightness' }">
               <template #icon>
                 <BrightIcons />
               </template>
             </BtnRedactor>
-            <BtnRedactor
-              type="stroke"
-              @click="activeSlider = 'Contrast'"
-              :class="{ active: activeSlider === 'Contrast' }"
-            >
+            <BtnRedactor type="stroke" @click="activeSlider = 'Contrast'"
+              :class="{ active: activeSlider === 'Contrast' }">
               <template #icon>
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12.0001 0C5.38311 0 0 5.38311 0 12C0 18.6171 5.38311 24.0001 12 24.0001C18.6171 24.0001 24 18.6171 24 12C24 5.38311 18.6171 0 12.0001 0ZM1.35835 12C1.35835 6.1323 6.1323 1.35835 12.0001 1.35835V22.6417C6.13224 22.6416 1.35835 17.8678 1.35835 12Z"
-                    fill="white"
-                  />
+                    fill="white" />
                 </svg>
               </template>
             </BtnRedactor>
-            <BtnRedactor
-              @click="activeSlider = 'Saturation'"
-              :class="{ active: activeSlider === 'Saturation' }"
-            >
+            <BtnRedactor @click="activeSlider = 'Saturation'" :class="{ active: activeSlider === 'Saturation' }">
               <template #icon>
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="19" height="19" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M21.7812 11C21.7812 16.7876 17.1969 21.5239 11.4688 21.7704V0.229492C17.1969 0.476055 21.7812 5.2123 21.7812 11ZM2.13031 4.87855V17.1214C2.54051 17.7137 3.00843 18.2639 3.52719 18.7639V3.23605C3.00843 3.73605 2.54051 4.28624 2.13031 4.87855ZM1.19281 15.4756V6.52434C0.5675 7.8884 0.21875 9.40387 0.21875 11C0.21875 12.5961 0.5675 14.1115 1.19281 15.4756ZM4.46469 19.5687C4.90531 19.9053 5.37219 20.2095 5.86203 20.4762V1.52371C5.37369 1.78996 4.90653 2.09335 4.46469 2.43121V19.5687ZM9.13391 21.619C9.5959 21.6998 10.0627 21.7504 10.5312 21.7704V0.229492C10.0627 0.249532 9.5959 0.300108 9.13391 0.380898V21.619ZM6.79953 20.929C7.25047 21.1207 7.71688 21.2815 8.19641 21.4109V0.589024C7.72021 0.717191 7.25347 0.878202 6.79953 1.0709V20.929Z"
-                    fill="#188BF1"
-                  />
+                    fill="#188BF1" />
                 </svg>
               </template>
             </BtnRedactor>
-            <BtnRedactor
-              @click="activeSlider = 'Inversion'"
-              :class="{ active: activeSlider === 'Inversion' }"
-            >
+            <BtnRedactor @click="activeSlider = 'Inversion'" :class="{ active: activeSlider === 'Inversion' }">
               <template #icon>
-                <svg
-                  width="20"
-                  height="22"
-                  viewBox="0 0 27 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="22" viewBox="0 0 27 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M13.5 0C12.9823 0 12.5625 0.41975 12.5625 0.9375V5.3125C12.5625 5.83025 12.9823 6.25 13.5 6.25C14.0177 6.25 14.4375 5.83025 14.4375 5.3125V0.9375C14.4375 0.41975 14.0177 0 13.5 0ZM13.5 8.5625C12.9823 8.5625 12.5625 8.98225 12.5625 9.5V13.875C12.5625 14.3927 12.9823 14.8125 13.5 14.8125C14.0177 14.8125 14.4375 14.3927 14.4375 13.875V9.5C14.4375 8.98225 14.0177 8.5625 13.5 8.5625ZM13.5 17.1875C12.9823 17.1875 12.5625 17.6073 12.5625 18.125V22.5C12.5625 23.0177 12.9823 23.4375 13.5 23.4375C14.0177 23.4375 14.4375 23.0177 14.4375 22.5V18.125C14.4375 17.6073 14.0177 17.1875 13.5 17.1875ZM13.5 25.75C12.9823 25.75 12.5625 26.1698 12.5625 26.6875V31.0625C12.5625 31.5802 12.9823 32 13.5 32C14.0177 32 14.4375 31.5802 14.4375 31.0625V26.6875C14.4375 26.1698 14.0177 25.75 13.5 25.75ZM8.71262 6.46894L1.21263 4.16631C1.07243 4.12326 0.924088 4.1137 0.779526 4.13841C0.634965 4.16311 0.498216 4.22139 0.380273 4.30855C0.26233 4.39572 0.166484 4.50934 0.100439 4.64029C0.0343936 4.77123 -7.95296e-06 4.91584 1.37909e-09 5.0625V26.9375C1.82483e-06 27.0842 0.0344104 27.2288 0.10046 27.3597C0.166509 27.4906 0.262357 27.6042 0.380299 27.6914C0.49824 27.7786 0.634985 27.8368 0.779542 27.8615C0.924099 27.8862 1.07243 27.8767 1.21263 27.8336L8.71262 25.531C8.90439 25.4721 9.07221 25.3533 9.19144 25.192C9.31066 25.0307 9.375 24.8354 9.375 24.6348V7.36513C9.375 6.95338 9.10625 6.58981 8.71262 6.46894ZM26.6197 4.30856C26.5018 4.2214 26.365 4.16313 26.2205 4.13842C26.0759 4.11372 25.9276 4.12327 25.7874 4.16631L18.2874 6.46894C18.0956 6.52779 17.9278 6.64661 17.8086 6.80792C17.6893 6.96923 17.625 7.16454 17.625 7.36513V24.6349C17.625 25.0466 17.8937 25.4102 18.2874 25.5311L25.7874 27.8337C25.9276 27.8767 26.0759 27.8863 26.2205 27.8616C26.365 27.8369 26.5018 27.7786 26.6197 27.6914C26.7376 27.6042 26.8335 27.4906 26.8995 27.3597C26.9656 27.2288 27 27.0842 27 26.9375V5.0625C27 4.76506 26.8589 4.48531 26.6197 4.30856Z"
-                    fill="#188BF1"
-                  />
+                    fill="#188BF1" />
                 </svg>
               </template>
             </BtnRedactor>
-            <BtnRedactor
-              @click="activeSlider = 'Blur'"
-              :class="{ active: activeSlider === 'Blur' }"
-            >
+            <BtnRedactor @click="activeSlider = 'Blur'" :class="{ active: activeSlider === 'Blur' }">
               <template #icon>
-                <svg
-                  width="22"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
+                <svg width="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <title>water</title>
-                  <path
-                    d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"
-                  />
+                  <path d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" />
                 </svg>
               </template>
             </BtnRedactor>
@@ -350,24 +170,13 @@
         </div>
         <h3 class="mt-6">Rotate</h3>
         <div class="rotation-controls" @click.prevent></div>
-        <v-btn
-          color="primary"
-          class="w-100 mt-8"
-          id="apply-filters"
-          :text="$t(`apply`)"
-          @click.prevent
-        />
+        <v-btn color="primary" class="w-100 mt-8" id="apply-filters" :text="$t(`apply`)" @click.prevent />
       </div>
     </div>
   </div>
   <div class="control-panel-container"></div>
 
-  <input
-    type="file"
-    id="upload-input"
-    accept="image/jpeg, image/png, image/jpg"
-    hidden
-  />
+  <input type="file" id="upload-input" accept="image/jpeg, image/png, image/jpg" hidden />
 
   <div class="tool-container">
     <div class="placeholder-button"></div>
@@ -380,22 +189,16 @@
       <h2 class="mb-3">{{ $t(titles[step]) }}</h2>
       <template v-if="!loading">
         <div class="modelPhotos-sex" v-if="step === 0 && sex === null">
-          <div
-            :class="{ active: sex === `M` }"
-            @click="
-              sex = `M`;
-              step = 1;
-            "
-          >
+          <div :class="{ active: sex === `M` }" @click="
+            sex = `M`;
+          step = 1;
+          ">
             {{ $t("male") }}
           </div>
-          <div
-            :class="{ active: sex === `M` }"
-            @click="
-              sex = `F`;
-              step = 1;
-            "
-          >
+          <div :class="{ active: sex === `M` }" @click="
+            sex = `F`;
+          step = 1;
+          ">
             {{ $t("female") }}
           </div>
         </div>
@@ -404,32 +207,17 @@
           <v-btn color="primary" @click="step = 2">{{ $t("apply") }}</v-btn>
         </div>
         <div v-if="step === 2" class="modelPhotos-photos">
-          <div
-            v-for="item in types"
-            class="modelPhotos-item"
-            @click="choiceType(item)"
-          >
+          <div v-for="item in types" class="modelPhotos-item" @click="choiceType(item)">
             <img :src="item.image" alt="" style="pointer-events: none" />
           </div>
         </div>
         <div v-if="step === 3">
           <div class="modelPhotos-photos">
-            <div
-              v-for="item in randomPhotos"
-              class="modelPhotos-item"
-              @click="selectImg(item.id)"
-              style="cursor: pointer; position: relative"
-            >
-              <img
-                alt="Photo"
-                style="pointer-events: none"
-                :src="item.img"
-                :style="loadingImage ? 'opacity: 0.6' : 'opacity: 1'"
-              />
-              <img
-                src="@assets/img/whatermark.png"
-                alt=""
-                style="
+            <div v-for="item in randomPhotos" class="modelPhotos-item" @click="selectImg(item.id)"
+              style="cursor: pointer; position: relative">
+              <img alt="Photo" style="pointer-events: none" :src="item.img"
+                :style="loadingImage ? 'opacity: 0.6' : 'opacity: 1'" />
+              <img src="@assets/img/whatermark.png" alt="" style="
                   position: absolute;
                   top: 0;
                   left: 0;
@@ -438,8 +226,7 @@
                   z-index: 1;
                   opacity: 0.7;
                   pointer-events: none;
-                "
-              />
+                " />
             </div>
           </div>
           <v-btn color="primary" @click="getPhotos">{{ $t("refresh") }}</v-btn>
@@ -1617,7 +1404,7 @@ export default {
   display: flex;
   grid-gap: 8px;
 
-  & > div {
+  &>div {
     width: 100%;
     max-width: 112px;
     display: flex;
@@ -1648,9 +1435,11 @@ export default {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 8px;
   margin: 20px 0;
+
   @media (max-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
   @media (max-width: 560px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1681,8 +1470,7 @@ export default {
     width: 85vw;
   }
 
-  .v-img {
-  }
+  .v-img {}
 
   &-item {
     cursor: pointer;
@@ -1697,10 +1485,8 @@ export default {
   overflow: hidden;
   cursor: pointer;
 
-  &.whiteBg {
-  }
 
-  & > span:nth-child(1) {
+  &>span:nth-child(1) {
     background: $primary;
     height: 28px;
     width: 72px;
@@ -1714,7 +1500,7 @@ export default {
     line-height: 12px;
   }
 
-  & > span:nth-child(2) {
+  &>span:nth-child(2) {
     background: $blue2;
     display: inline-flex;
     flex-grow: 1;
@@ -1730,11 +1516,8 @@ export default {
 .filter-btns {
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 8px;
+  justify-content: space-between;
   color: rgba(24, 139, 241, 1);
-  @media (max-width: $md) {
-    grid-gap: 3px;
-  }
 }
 
 .myRange {
@@ -1742,6 +1525,7 @@ export default {
   overflow: hidden;
   height: 64px;
   border-radius: 20px;
+
   @media (max-width: $md) {
     height: 32px;
   }
@@ -1765,6 +1549,7 @@ export default {
       top: 50%;
       transform: translateY(-50%);
       right: 8px;
+
       @media (max-width: $md) {
         font-size: 12px;
       }
@@ -1794,6 +1579,7 @@ export default {
   outline: none;
   border-radius: 10px;
   transition: opacity 0.2s;
+
   @media (max-width: $md) {
     height: 32px;
   }
@@ -1804,6 +1590,7 @@ export default {
   background: $blue;
   border-radius: 10px;
   height: 64px;
+
   @media (max-width: $md) {
     height: 32px;
   }
@@ -1819,6 +1606,7 @@ export default {
   border-radius: 0 10px 10px 0;
   opacity: 1;
   cursor: pointer;
+
   @media (max-width: $md) {
     height: 32px;
   }
@@ -1865,18 +1653,26 @@ export default {
       background: #fff;
       border-radius: 10px;
       padding: 19px;
+
       @media (max-width: $md) {
         padding: 0px;
         background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
 
     &-wrp {
       grid-gap: 16px;
       position: relative;
+
       @media (min-width: $md) {
         display: flex;
       }
+    }
+    &-contrast {
+      width: -webkit-fill-available;
     }
   }
 }
@@ -2252,6 +2048,7 @@ export default {
 }
 
 @media (max-width: 614px) {
+
   .control-panel-container button,
   .control-panel-container label {
     padding: 0 0.25rem;
@@ -2271,6 +2068,7 @@ export default {
 }
 
 @media (max-width: 454px) {
+
   .control-panel-container button,
   .control-panel-container label {
     padding: 0 0.1rem;
@@ -2304,8 +2102,8 @@ export default {
   //position: absolute;
   background: url("@assets/constructor/img/bgPhotoRed.png") center/cover repeat;
   overflow: hidden;
-  @media (max-width: 360px) {
-  }
+
+  @media (max-width: 360px) {}
 
   &-ww {
     @media (max-width: 360px) {
@@ -2316,6 +2114,7 @@ export default {
       margin-right: auto;
       margin-bottom: -52px;
     }
+
     @media (max-width: 288px) {
       transform: scaleX(0.71) scaleY(0.78);
       overflow: hidden;
@@ -2331,8 +2130,7 @@ export default {
     width: var(--width);
     pointer-events: none;
     height: var(--height);
-    background: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='311' height='371' viewBox='0 0 311 371' fill='none'><path d='M308.5 185.5C308.5 286.999 239.605 368.5 155.5 368.5C71.3954 368.5 2.5 286.999 2.5 185.5C2.5 84.0006 71.3954 2.5 155.5 2.5C239.605 2.5 308.5 84.0006 308.5 185.5Z' stroke='%23188BF1' stroke-width='5'/></svg>")
-      center/ cover no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='311' height='371' viewBox='0 0 311 371' fill='none'><path d='M308.5 185.5C308.5 286.999 239.605 368.5 155.5 368.5C71.3954 368.5 2.5 286.999 2.5 185.5C2.5 84.0006 71.3954 2.5 155.5 2.5C239.605 2.5 308.5 84.0006 308.5 185.5Z' stroke='%23188BF1' stroke-width='5'/></svg>") center/ cover no-repeat;
   }
 }
 
@@ -2738,11 +2536,9 @@ export default {
 }
 
 .filters-controls .filters-left-col,
-.filters-controls .filters-right-col {
-}
+.filters-controls .filters-right-col {}
 
-.filters-controls .filters-left-col {
-}
+.filters-controls .filters-left-col {}
 
 @media (max-width: 614px) {
   .filters-controls {
@@ -2750,11 +2546,11 @@ export default {
     justify-content: center;
   }
 
-  .filters-controls .filters-left-col {
-  }
+  .filters-controls .filters-left-col {}
 }
 
 @media (max-width: 454px) {
+
   .filters-controls .filters-left-col,
   .filters-controls .filters-right-col {
     padding: 0.1rem;
@@ -2797,17 +2593,20 @@ export default {
   height: 28px;
   width: 28px;
   flex-shrink: 0;
+
   @media (max-width: $md) {
     position: absolute;
     top: -18px;
     z-index: 5;
     width: fit-content;
     right: 0;
+
     &:after {
       content: "Reset rotate";
       text-decoration: underline;
       padding: 4px 0;
     }
+
     svg {
       display: none;
     }
@@ -2848,6 +2647,7 @@ export default {
   align-items: center;
   display: flex;
   padding: 0 !important;
+
   @media (max-width: $md) {
     margin-top: -12px !important;
   }
@@ -2882,9 +2682,7 @@ export default {
   border-radius: 10px;
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]::-webkit-slider-thumb {
+.rotation-controls .rotation-slider-container input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
 
@@ -2900,9 +2698,7 @@ export default {
   border-color: #0000;
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]::-webkit-slider-thumb {
+.rotation-controls .rotation-slider-container input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 2rem;
   width: 0.5rem;
@@ -2913,9 +2709,7 @@ export default {
 
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]::-moz-range-thumb {
+.rotation-controls .rotation-slider-container input[type="range"]::-moz-range-thumb {
   height: 2rem;
   width: 0.5rem;
   cursor: pointer;
@@ -2938,24 +2732,18 @@ export default {
     0 3px 6px #000000a8;
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]::-webkit-slider-runnable-track {
+.rotation-controls .rotation-slider-container input[type="range"]::-webkit-slider-runnable-track {
   height: 0.35rem;
   cursor: pointer;
   background: none;
   position: relative;
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]:focus::-webkit-slider-runnable-track {
+.rotation-controls .rotation-slider-container input[type="range"]:focus::-webkit-slider-runnable-track {
   background: none;
 }
 
-.rotation-controls
-  .rotation-slider-container
-  input[type="range"]::-moz-range-track {
+.rotation-controls .rotation-slider-container input[type="range"]::-moz-range-track {
   height: 0.35rem;
   cursor: pointer;
   background: none;

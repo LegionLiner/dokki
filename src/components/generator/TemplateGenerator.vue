@@ -1429,8 +1429,10 @@ onBeforeMount(async () => {
   font-size: 0.92rem;
 
   &__content {
-    height: calc(100vh - 48px);
     border-radius: 20px;
+  }
+  &__subtitle {
+    align-items: end;
   }
 
   &__img {
@@ -1439,9 +1441,12 @@ onBeforeMount(async () => {
     height: auto;
 
     &_modal {
-      width: auto;
       height: 100%;
       object-fit: contain;
+
+      @media (width > 700px) {
+        width: auto;
+      }
     }
   }
 }

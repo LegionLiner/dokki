@@ -1,5 +1,5 @@
 <template>
-  <v-autocomplete
+  <v-combobox
           hide-details
           clearable
           v-model="selected"

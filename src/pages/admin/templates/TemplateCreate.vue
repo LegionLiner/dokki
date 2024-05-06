@@ -188,7 +188,12 @@ i::before {
   background: rgba(247, 251, 255, 1);
   padding: 20px 16px !important;
   border-radius: 20px !important;
+  &-title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   .action-buttons {
+    margin-left: 10px;
     button {
       padding: 12px 24px;
       height: auto;

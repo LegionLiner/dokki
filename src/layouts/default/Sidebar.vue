@@ -58,6 +58,7 @@ defineEmits(["update:opened", "update:selected", "update:show", "logout"]);
 
   &__content {
     padding: 0 6px 0 12px;
+    margin-left: 0px !important;
   }
 }
 

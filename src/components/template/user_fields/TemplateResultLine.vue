@@ -6,7 +6,7 @@
     hide-details
     density="compact"
     bg-color="#fff"
-    variant="plain"
+    variant="outlined"
     id="user-field-template-resultline-child"
     :model-value="childTemplateId"
     :placeholder="$t(`labels.childTemplate`)"

@@ -201,6 +201,7 @@ watchEffect(() => {
 </script>
 <style lang="scss">
 .sign {
+  border-radius: 10px;
   &__label {
     font-size: 1.08rem;
     border-top-left-radius: 10px;

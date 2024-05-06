@@ -50,6 +50,7 @@ declare module 'vue' {
     GridIcon: typeof import('./src/components/icons/GridIcon.vue')['default']
     HeartIcon: typeof import('./src/components/icons/HeartIcon.vue')['default']
     HomeIcon: typeof import('./src/components/icons/HomeIcon.vue')['default']
+    ItemActions: typeof import('./src/components/template/user_fields/ItemActions.vue')['default']
     LabelCheckboxPair: typeof import('./src/components/LabelCheckboxPair.vue')['default']
     LangMenu: typeof import('./src/components/LangMenu.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']

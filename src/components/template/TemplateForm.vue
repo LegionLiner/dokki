@@ -154,6 +154,7 @@
             @delete="deleteUserField"
             @edit="editUserField"
             @duplicate="duplicateUserField"
+            :isTemplate="true"
           />
           <pagination
             v-if="userFieldsPages > 1"
@@ -197,7 +198,7 @@
               />
             </v-form>
           </v-card-text>
-          <v-card-actions class="justify-end action-buttons">
+          <v-card-actions class="justify-start action-buttons">
             <v-btn
               class="submit"
               color="primary"
@@ -346,12 +347,6 @@ const files = ref<FilesContainer>({
   excel: [],
   input: [],
 });
-watch(files, () => {
- // console.log(buildFilePayload(files.value.excel, excelFilesBatch.value, FileType.Input));
-  
-}, {
-  deep: true
-})
 const headers = computed(() => [
   {
     title: t("table.order"),
@@ -580,14 +575,12 @@ const saveTemplate = () => {
   emit("submit", docForm, filesPayload);
 };
 
-const uploadCustomUserFieldsFile = async (files: File[]) => {
-  if (!files?.length) {
+const uploadCustomUserFieldsFile = async (file: File) => {
+  if (!file) {
     return;
   }
-
   userFieldsTableLoading.value = true;
-
-  const [file] = files;
+  
   const response = await templatesService.getFields(file);
   const { data, meta } = response;
   const { success, message } = meta;
@@ -595,18 +588,16 @@ const uploadCustomUserFieldsFile = async (files: File[]) => {
   if (!success) {
     userFieldsTableLoading.value = false;
     toast.error(message);
-
     return;
   }
 
   if (isGeneratedFields(data)) {
     const { fields } = data;
-
+    
     if (fields.length) {
       const lastId = getLastId(fields);
       const extendedFields = fields.map((field, index) => {
         field.id = lastId + index + 1;
-
         return field;
       });
 

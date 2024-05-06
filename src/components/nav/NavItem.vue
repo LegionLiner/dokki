@@ -3,7 +3,7 @@
     <template v-slot:activator="{ props }">
       <v-list-item
         v-bind="props"
-        class="v-list-item--pointer v-list-item--sidebar"
+        class="v-list-item--pointer v-list-item--sidebar sidebar-item"
         :link="false"
         :title="item.title"
         :value="item.value"
@@ -42,35 +42,12 @@ interface Props {
 
 defineProps<Props>();
 </script>
-<!-- <style lang="scss">
+<style lang="scss">
 @import "src/styles/vuetify/vars.scss";
 
-.v-list-item {
-  $element: ".v-list-item";
-  &--pointer {
-    cursor: pointer;
-  }
-
-  &--nav {
-    &#{$element} {
-      &--sidebar {
-        #{$element} {
-          &-title {
-            line-height: 1.2em;
-          }
-        }
-
-        &#{$element}--active#{$element}--link {
-          color: $nav-sidebar-active-color;
-
-          svg {
-            path {
-              fill: $nav-bottom-active-color;
-            }
-          }
-        }
-      }
-    }
+.sidebar-item {
+  .v-list-item__content {
+    margin-left: 0px !important;
   }
 }
-</style> -->
+</style>

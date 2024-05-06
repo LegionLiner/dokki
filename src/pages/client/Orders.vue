@@ -29,7 +29,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-data-table v-if="lgAndUp" class="v-table--round v-table--spacing v-table--padding bg-transparent" sticky
+        <v-data-table v-if="lgAndUp" class="v-table--round v-table--spacing v-table--padding bg-transparent desktop-table" sticky
           :items="orders" :headers="headers" :items-per-page="0" :loading="loading">
           <template #item.actions="{ item }">
             <ClientOrdersActions :model-value="item" @delete="deleteId = item.id" @copy="redirectToGenerator(item.id)"
@@ -66,7 +66,9 @@
             :model-value="item" 
             @delete="deleteId = id" 
             @run="runOrder($event)"
-            :downloadFileUrl="`${downloadFileUrl}${fetching[id]?.files[0]?.oneTimeToken || ''}`" />
+            @fetchFile="fetchFiles(id)"
+            :files="fetching[id]?.files || []"
+            :downloadFileUrl="downloadFileUrl" />
           </template>
           <template #item.files="{ row: { id } }">
             <div class="mb-2 my-lg-2">
@@ -189,7 +191,7 @@ const isShort = computed<boolean>(() => display.width.value < 1600);
 const isMobile = computed<boolean>(() => display.width.value < 600);
 const fetching = reactive<Record<string, FetchFile>>({});
 const downloadFileUrl = ref<string>(
-  `${import.meta.env.VITE_API_ADDRESS}order/file/`,
+  `${import.meta.env.VITE_API_ADDRESS}/order/file/`,
 );
 const countriesLoading = ref<boolean>(false);
 const countriesData = ref<Country[]>([]);
@@ -396,7 +398,6 @@ const ordersParams = reactive<GetAdminOrdersParams>({
   pageSize: 12,
   start: 0,
 });
-// ParentTemplate is internal only category
 const categoryRoute = ref<CategoryRoute>({
   [Category.Doc]: "generator.docs.order",
   [Category.MRZ]: "generator.mrz.order",
@@ -706,6 +707,9 @@ onBeforeMount(async () => {
 .v-table .v-table__wrapper>table>tbody>tr:not(:last-child)>th {
   border-bottom: none !important;
 }
+.v-table--has-top > .v-table__wrapper > table > tbody > tr > td:last-child {
+  padding: 0 !important;
+}
 
 .v-card.delete-modal {
   border-radius: 20px !important;
@@ -715,6 +719,14 @@ onBeforeMount(async () => {
   .v-btn-delete {
     border: 1px solid rgba(24, 139, 241, 1);
     color: rgba(24, 139, 241, 1) !important;
+  }
+}
+.desktop-table {
+  td {
+    max-width: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 }
 </style>

@@ -49,12 +49,11 @@ const currentLanguage = computed<string>(() =>
     }
   }
   .background {
-    background: #E3F1FD;
+    // background: #E3F1FD;
+    background: none;
     padding-right: 8px !important;
 
     @media (width < 1280px) {
-      background: none;
-
       &.v-list-item--active {
         background: #E3F1FD;
       }
@@ -81,9 +80,6 @@ const currentLanguage = computed<string>(() =>
       margin-left: 10px;
     }
   }
-  // .v-list-item:not(.v-list-group__items > .v-list-item) {
-  //   color: #188BF1;
-  // }
 
   &__items {
     margin-top: 4px;

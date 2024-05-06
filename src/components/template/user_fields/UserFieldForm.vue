@@ -36,45 +36,54 @@
       bg-color="#fff"
       :placeholder="$t(`labels.tags`)"
     />
-    <LabelCheckboxPair className="checkbox">
-      <template #label>
-        <label for="user-field-isFile">
-          {{ $t("labels.isFile") }}
-        </label>
-      </template>
-      <v-checkbox
-        v-model="newItem.isFile"
-        hide-details
-        density="compact"
-        id="user-field-isFile"
-      />
-    </LabelCheckboxPair>
-    <LabelCheckboxPair className="checkbox">
-      <template #label>
-        <label for="user-field-needReverse">
-          {{ $t("labels.needReverse") }}
-        </label>
-      </template>
-      <v-checkbox
-        v-model="newItem.needToReverseText"
-        hide-details
-        density="compact"
-        id="user-field-needReverse"
-      />
-    </LabelCheckboxPair>
-    <LabelCheckboxPair className="checkbox">
-      <template #label>
-        <label for="user-field-isHidden">
-          {{ $t("labels.isHidden") }}
-        </label>
-      </template>
-      <v-checkbox
-        v-model="newItem.isHidden"
-        hide-details
-        density="compact"
-        id="user-field-isHidden"
-      />
-    </LabelCheckboxPair>
+    <div></div>
+    <div class="checkbox-fields">
+      <div class="checkbox-field">
+        <LabelCheckboxPair className="checkbox">
+          <template #label>
+            <label for="user-field-isFile">
+              {{ $t("labels.isFile") }}
+            </label>
+          </template>
+          <v-checkbox
+            v-model="newItem.isFile"
+            hide-details
+            density="compact"
+            id="user-field-isFile"
+          />
+        </LabelCheckboxPair>
+      </div>
+      <div class="checkbox-field">
+        <LabelCheckboxPair className="checkbox">
+          <template #label>
+            <label for="user-field-needReverse">
+              {{ $t("labels.needReverse") }}
+            </label>
+          </template>
+          <v-checkbox
+            v-model="newItem.needToReverseText"
+            hide-details
+            density="compact"
+            id="user-field-needReverse"
+          />
+        </LabelCheckboxPair>
+      </div>
+      <div class="checkbox-field">
+        <LabelCheckboxPair className="checkbox">
+          <template #label>
+            <label for="user-field-isHidden">
+              {{ $t("labels.isHidden") }}
+            </label>
+          </template>
+          <v-checkbox
+            v-model="newItem.isHidden"
+            hide-details
+            density="compact"
+            id="user-field-isHidden"
+          />
+        </LabelCheckboxPair>
+      </div>
+    </div>
     <label for="user-field-default-value">
       {{ $t("labels.defaultValue") }}
     </label>
@@ -352,3 +361,33 @@ onBeforeMount(async () => {
   await Promise.allSettled([fetchRequiredData(source.value)]);
 });
 </script>
+
+<style lang="scss">
+.checkbox-fields {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @media (width < 600px) {
+      .checkbox-row {
+        flex-direction: column-reverse;
+        gap: 0px;
+      }
+    }
+  }
+}
+// .day-week {
+//   .v-selection-control .v-label {
+//     @media (width < 600px) {
+//       width: 15px;
+//       white-space: nowrap;
+//       overflow: hidden;
+//     }
+//   }
+// }
+</style>

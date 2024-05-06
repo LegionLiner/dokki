@@ -10,7 +10,7 @@
     </v-card>
   </template>
   <template v-else>
-    <table class="flexible rounded-t-lg w-100">
+    <table class="flexible rounded-t-lg w-100" :class="{ 'balance-table': isBalance, 'template-table': isTemplate }">
       <thead>
         <tr>
           <th
@@ -21,6 +21,9 @@
             :class="{
               'flexible__cell_rounded-start': headerIndex === 0,
               'flexible__cell_rounded-end': headerIndex === headers.length - 1,
+              'flexible__cell_wide': [1, 2, 3].includes(headerIndex),
+              'flexible__cell_mobile': [3, 4].includes(headerIndex),
+              'flexible__cell_hide': [3, 4, 5, 6, 7, 8].includes(headerIndex),
             }"
           >
             {{ header.title }}
@@ -36,6 +39,8 @@
             :class="{
               'flexible__cell_rounded-start': cellIndex === 0,
               'flexible__cell_rounded-end': cellIndex === row.cells.length - 1,
+              'flexible__cell_mobile': [3, 4].includes(cellIndex),
+              'flexible__cell_hide': [3, 4, 5, 6, 7, 8].includes(cellIndex),
             }"
           >
             <slot
@@ -69,6 +74,8 @@ interface Props {
   headers: Header[];
   items: Item[];
   loading?: boolean;
+  isBalance?: boolean;
+  isTemplate?: boolean;
 }
 
 interface FlexibleTableCell {
@@ -121,6 +128,13 @@ const rows = computed<FlexibleTableRow[]>(() => {
   border-spacing: 0px 4px;
   @media (width < 600px) {
     font-size: 11px;
+
+    &.balance-table {
+      text-align: center;
+      .flexible__cell_rounded-end {
+        display: none !important;
+      }
+    }
   }
 
   &__cell {
@@ -151,5 +165,30 @@ const rows = computed<FlexibleTableRow[]>(() => {
 
 .no-data {
   font-size: 1rem;
+}
+</style>
+
+<style lang="scss">
+.v-table--has-bottom > .v-table__wrapper > table > tbody > tr:last-child:hover > td:last-child {
+  border-bottom-right-radius: 10px !important;
+}
+.v-table--has-bottom > .v-table__wrapper > table > tbody > tr:last-child:hover > td:first-child {
+  border-bottom-left-radius: 10px !important;
+}
+
+.template-table {
+  .flexible__cell_wide {
+    // width: 300px;
+  }
+  @media (width < 900px) {
+    .flexible__cell_mobile {
+      display: none !important;
+    }
+  }
+  @media (width < 600px) {
+    .flexible__cell_hide {
+      display: none !important;
+    }
+  }
 }
 </style>

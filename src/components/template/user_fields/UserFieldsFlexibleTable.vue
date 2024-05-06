@@ -1,5 +1,5 @@
 <template>
-  <FlexibleTable :headers="headers" :items="items">
+  <FlexibleTable :headers="headers" :items="items" :isTemplate="isTemplate">
     <template #item.displayOrder="{ row: { id, index }, cell }">
       <v-text-field
         hide-details
@@ -49,6 +49,7 @@
     </template>
     <template #item.isFile="{ row: { id }, cell }">
       <v-checkbox
+      v-if="!isShort"
         hide-details
         density="compact"
         :model-value="cell.value"
@@ -57,6 +58,7 @@
     </template>
     <template #item.needToReverseText="{ row: { id }, cell }">
       <v-checkbox
+      v-if="!isShort"
         hide-details
         density="compact"
         :model-value="cell.value"
@@ -65,6 +67,7 @@
     </template>
     <template #item.isHidden="{ row: { id }, cell }">
       <v-checkbox
+      v-if="!isShort"
         hide-details
         density="compact"
         :model-value="cell.value"
@@ -84,44 +87,18 @@
       />
     </template>
     <template #item.actions="{ row: { id } }">
-      <div class="d-flex flex-wrap ga-2 ga-sm-1 mb-2 my-lg-2">
-        <v-btn color="primary" class="v-btn-action" variant="flat" size="x-small" :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`edit`, id)">
-        <EditIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("edit") }}
-          </template>
-          </v-btn>
-        <v-btn class="v-btn-action" color="primary" variant="flat" size="x-small"  :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`duplicate`, id)">
-          <CopyIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("duplicate") }}
-          </template>
-        </v-btn>
-        <v-btn color="red" variant="flat" size="x-small" class="v-btn-action" :class="{
-          'v-btn-action__icon': isShort,
-        }" @click="$emit(`delete`, id)">
-          <TrashIcon v-if="isShort" />
-          <template v-else>
-            {{ $t("delete") }}
-          </template>
-        </v-btn>
-      </div>
+      <ItemActions @itemEdit="$emit(`edit`, id)" @itemDuplicate="$emit(`duplicate`, id)" @itemDelete="$emit(`delete`, id)"></ItemActions>
     </template>
   </FlexibleTable>
 </template>
+
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from "vue";
 import type { UserField } from "@services/types";
 import FlexibleTable from "@/components/FlexibleTable.vue";
 import { Sources } from "@/dict";
 import type { SourceItem } from "@/dict/types";
-import EditIcon from "@components/icons/EditIcon.vue";
-import CopyIcon from "@components/icons/CopyIcon.vue";
-import TrashIcon from "@components/icons/TrashIcon.vue";
+import ItemActions from "./ItemActions.vue";
 import { useDisplay } from "vuetify";
 
 interface Header {
@@ -133,6 +110,7 @@ interface Header {
 interface Props {
   headers: Header[];
   items: UserField[];
+  isTemplate?: boolean;
 }
 
 type Memoized = Pick<UserField, "displayOrder">;
@@ -140,11 +118,10 @@ type Memoized = Pick<UserField, "displayOrder">;
 const props = defineProps<Props>();
 defineEmits(["delete", "edit", "duplicate"]);
 
-const display = useDisplay();
-const isShort = computed<boolean>(() => display.width.value < 1600);
-
 const sources = ref<SourceItem[]>(Sources);
 const memoized = ref<Memoized[]>([]);
+const { width } = useDisplay();
+const isShort = computed<boolean>(() => width.value < 1450);
 
 const memoizeOrder = (index: number, value: string) => {
   if (/^[+-]?\d+$/.test(value)) {
@@ -185,3 +162,20 @@ watchEffect(() => {
   memoized.value = props.items.map(({ displayOrder }) => ({ displayOrder }));
 });
 </script>
+
+<style lang="scss">
+.template-table > thead > tr:last-child {
+  > th:nth-child(6), > th:nth-child(7), > th:nth-child(8) {
+    @media (width < 1450px) {
+      display: none;
+    }
+  }
+}
+.template-table > tbody > tr {
+  > td:nth-child(6), > td:nth-child(7), > td:nth-child(8) {
+    @media (width < 1450px) {
+      display: none;
+    }
+  }
+}
+</style>

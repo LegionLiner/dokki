@@ -12,7 +12,7 @@
       <v-card-text>
         <slot />
       </v-card-text>
-      <v-card-actions class="justify-end px-6 py-2 flex-wrap gr-2 action-buttons">
+      <v-card-actions class="justify-start px-6 py-2 flex-wrap gr-2 action-buttons">
         <v-btn
           class="submit"
           color="primary"
@@ -50,7 +50,12 @@ defineEmits(["save", "close", "update:modelValue"]);
 .v-card {
   background: rgba(247, 251, 255, 1);
   padding: 20px 16px !important;
+  &-title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   .action-buttons {
+    margin-left: 10px;
     button {
       padding: 12px 24px;
       height: auto;
