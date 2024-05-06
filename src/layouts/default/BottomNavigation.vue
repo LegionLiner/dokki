@@ -172,7 +172,7 @@ const btnStyle = computed(() => {
 
     &__content {
       & > .v-btn {
-        padding: 11px !important;
+        padding: 9px !important;
         max-width: none !important;
         min-width: 36px !important;
       }
