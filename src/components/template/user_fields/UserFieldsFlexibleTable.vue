@@ -164,14 +164,14 @@ watchEffect(() => {
 </script>
 
 <style lang="scss">
-.template-table > thead > tr:last-child {
+.template-table-edit > thead > tr:last-child {
   > th:nth-child(6), > th:nth-child(7), > th:nth-child(8) {
     @media (width < 1450px) {
       display: none;
     }
   }
 }
-.template-table > tbody > tr {
+.template-table-edit > tbody > tr {
   > td:nth-child(6), > td:nth-child(7), > td:nth-child(8) {
     @media (width < 1450px) {
       display: none;

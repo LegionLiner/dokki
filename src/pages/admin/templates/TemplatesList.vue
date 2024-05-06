@@ -123,7 +123,7 @@
           </template>
           <template #bottom />
         </v-data-table>
-        <FlexibleTable v-else :headers="headers" :items="templates">
+        <FlexibleTable v-else :headers="headers" :items="templates" :isTemplateTable="true">
           <template #item.actions="{ row: { id } }">
             <div class="d-flex flex-wrap ga-2 ga-sm-1 mb-2 my-lg-2">
               <v-btn link color="primary" class="v-btn-action" variant="flat" size="x-small" :class="{

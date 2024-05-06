@@ -24,6 +24,7 @@ declare module 'vue' {
     CustomSelector: typeof import('./src/components/generator/CustomSelector.vue')['default']
     DatePicker: typeof import('./src/components/DatePicker.vue')['default']
     DatePickerButton: typeof import('./src/components/generator/DatePickerButton.vue')['default']
+    DatePickerComponent: typeof import('./src/components/generator/DatePickerComponent.vue')['default']
     DocumentSelect: typeof import('./src/components/DocumentSelect.vue')['default']
     DownloadIcon: typeof import('./src/components/icons/DownloadIcon.vue')['default']
     EarthIcon: typeof import('./src/components/icons/EarthIcon.vue')['default']

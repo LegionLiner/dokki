@@ -50,6 +50,9 @@ defineEmits(["save", "close", "update:modelValue"]);
 .v-card {
   background: rgba(247, 251, 255, 1);
   padding: 20px 16px !important;
+  &::webkit-scrollbar {
+    width: 0px;
+  }
   &-title {
     margin-left: 10px;
     margin-right: 10px;

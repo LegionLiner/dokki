@@ -32,11 +32,11 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-data-table v-if="lgAndUp" :items="orders" :headers="headers" :loading="loading" :items-per-page="0"
-          class="v-table--round v-table--spacing v-table--padding bg-transparent">
+        <v-data-table v-if="lgAndUp" :items="orders" :headers="headers" :items-per-page="0"
+          class="v-table--round v-table--spacing v-table--padding bg-transparent text-truncate">
           <template #bottom />
         </v-data-table>
-        <FlexibleTable v-else :headers="headers" :loading="loading" :items="orders" />
+        <FlexibleTable v-else :headers="headers" :items="orders" :isOrders="true" />
       </v-col>
     </v-row>
     <template v-if="!!orders.length">
@@ -439,6 +439,55 @@ i::before {
     background-color: rgba(155, 171, 200, 1);
     border-radius: 20px;
     border: 3px solid white;
+  }
+}
+
+.v-table > .v-table__wrapper > table > thead > tr:last-child > th:last-child {
+  width: 100px !important;
+}
+.v-table > .v-table__wrapper > table > thead > tr:last-child > th:first-child {
+  width: 70px !important;
+}
+.v-table > .v-table__wrapper > table > thead > tr:last-child {
+  > th:nth-child(2) {
+    width: 150px !important;
+  }
+  > th:nth-child(3) {
+    width: 150px !important;
+  }
+  > th:nth-child(4) {
+    width: 120px !important;
+  }
+  > th:nth-child(5) {
+    width: 150px !important;
+  }
+  > th:nth-child(6), > th:nth-child(7), > th:nth-child(8) {
+    width: 80px !important;
+
+    @media (width < 1450px) {
+      display: none;
+    }
+  }
+  > th:nth-child(9) {
+    width: 240px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+.v-table > .v-table__wrapper > table > tbody > tr {
+  > td:nth-child(4) {
+    max-width: 0;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  > td:nth-child(6), > td:nth-child(7), > td:nth-child(8) {
+    width: 80px !important;
+
+    @media (width < 1450px) {
+      display: none;
+    }
   }
 }
 </style>

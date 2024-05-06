@@ -10,44 +10,33 @@
     </v-card>
   </template>
   <template v-else>
-    <table class="flexible rounded-t-lg w-100" :class="{ 'balance-table': isBalance, 'template-table': isTemplate }">
+    <table class="flexible rounded-t-lg w-100"
+      :class="{ 'balance-table': isBalance, 'template-table-edit': isTemplate, 'orders-table': isOrders, 'template-table': isTemplateTable }">
       <thead>
         <tr>
-          <th
-            v-for="(header, headerIndex) in headers"
-            class="flexible__cell flexible__cell_truncate text-left text-truncate text-center pa-2"
-            scope="row"
-            :key="headerIndex"
-            :class="{
+          <th v-for="(header, headerIndex) in headers"
+            class="flexible__cell flexible__cell_truncate text-left text-truncate text-center pa-2" scope="row"
+            :key="headerIndex" :class="{
               'flexible__cell_rounded-start': headerIndex === 0,
               'flexible__cell_rounded-end': headerIndex === headers.length - 1,
               'flexible__cell_wide': [1, 2, 3].includes(headerIndex),
               'flexible__cell_mobile': [3, 4].includes(headerIndex),
               'flexible__cell_hide': [3, 4, 5, 6, 7, 8].includes(headerIndex),
-            }"
-          >
+            }">
             {{ header.title }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="row.id">
-          <td
-            v-for="(cell, cellIndex) in row.cells"
-            class="flexible__cell flexible__cell_truncate text-truncate pa-2"
-            :key="cellIndex"
-            :class="{
+          <td v-for="(cell, cellIndex) in row.cells" class="flexible__cell flexible__cell_truncate text-truncate pa-2"
+            :key="cellIndex" :class="{
               'flexible__cell_rounded-start': cellIndex === 0,
               'flexible__cell_rounded-end': cellIndex === row.cells.length - 1,
               'flexible__cell_mobile': [3, 4].includes(cellIndex),
               'flexible__cell_hide': [3, 4, 5, 6, 7, 8].includes(cellIndex),
-            }"
-          >
-            <slot
-              v-if="$slots[`item.${cell.key}`]"
-              :name="`item.${cell.key}`"
-              v-bind="{ row, cell }"
-            />
+            }">
+            <slot v-if="$slots[`item.${cell.key}`]" :name="`item.${cell.key}`" v-bind="{ row, cell }" />
             <template v-else>
               {{ cell.value }}
             </template>
@@ -76,6 +65,8 @@ interface Props {
   loading?: boolean;
   isBalance?: boolean;
   isTemplate?: boolean;
+  isOrders?: boolean;
+  isTemplateTable?: boolean;
 }
 
 interface FlexibleTableCell {
@@ -123,14 +114,17 @@ const rows = computed<FlexibleTableRow[]>(() => {
 </script>
 <style lang="scss" scoped>
 @import "vuetify/lib/styles/settings/_variables";
+
 .flexible {
   border-collapse: separate;
   border-spacing: 0px 4px;
+
   @media (width < 600px) {
     font-size: 11px;
 
     &.balance-table {
       text-align: center;
+
       .flexible__cell_rounded-end {
         display: none !important;
       }
@@ -169,25 +163,89 @@ const rows = computed<FlexibleTableRow[]>(() => {
 </style>
 
 <style lang="scss">
-.v-table--has-bottom > .v-table__wrapper > table > tbody > tr:last-child:hover > td:last-child {
+.v-table--has-bottom>.v-table__wrapper>table>tbody>tr:last-child:hover>td:last-child {
   border-bottom-right-radius: 10px !important;
 }
-.v-table--has-bottom > .v-table__wrapper > table > tbody > tr:last-child:hover > td:first-child {
+
+.v-table--has-bottom>.v-table__wrapper>table>tbody>tr:last-child:hover>td:first-child {
   border-bottom-left-radius: 10px !important;
 }
 
-.template-table {
-  .flexible__cell_wide {
-    // width: 300px;
-  }
+.template-table-edit {
   @media (width < 900px) {
     .flexible__cell_mobile {
       display: none !important;
     }
   }
+
   @media (width < 600px) {
     .flexible__cell_hide {
       display: none !important;
+    }
+  }
+}
+
+.orders-table {
+  @media (width < 900px) {
+    >thead>tr {
+
+      >th:nth-child(6),
+      >th:nth-child(7),
+      >th:nth-child(8) {
+        display: none !important;
+      }
+    }
+
+    >tbody>tr {
+
+      >td:nth-child(6),
+      >td:nth-child(7),
+      >td:nth-child(8) {
+        display: none !important;
+      }
+    }
+  }
+
+  @media (width < 700px) {
+    >thead>tr {
+
+      >th:nth-child(1),
+      >th:nth-child(9),
+      >th:nth-child(10) {
+        display: none !important;
+      }
+    }
+
+    >tbody>tr {
+
+      >td:nth-child(1),
+      >td:nth-child(9),
+      >td:nth-child(10) {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.template-table {
+  > thead> tr {
+    th {
+      white-space: normal !important;
+    }
+  }
+  >thead>tr:last-child {
+    >th:nth-child(7) {
+      @media (width < 1050px) {
+        display: none;
+      }
+    }
+  }
+
+  >tbody>tr {
+    >td:nth-child(7) {
+      @media (width < 1050px) {
+        display: none;
+      }
     }
   }
 }

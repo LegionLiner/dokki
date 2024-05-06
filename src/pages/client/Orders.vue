@@ -30,7 +30,7 @@
     <v-row>
       <v-col>
         <v-data-table v-if="lgAndUp" class="v-table--round v-table--spacing v-table--padding bg-transparent desktop-table" sticky
-          :items="orders" :headers="headers" :items-per-page="0" :loading="loading">
+          :items="orders" :headers="headers" :items-per-page="0">
           <template #item.actions="{ item }">
             <ClientOrdersActions :model-value="item" @delete="deleteId = item.id" @copy="redirectToGenerator(item.id)"
               @run="runOrder(item.id)" />
@@ -60,7 +60,7 @@
           </template>
           <template #bottom />
         </v-data-table>
-        <FlexibleTable v-else :headers="headers" :loading="loading" :items="orders">
+        <FlexibleTable v-else :headers="headers" :items="orders">
           <template #item.actions="{ row: { item, id } }">
             <ClientOrdersActions 
             :model-value="item" 

@@ -14,7 +14,6 @@
           :items="items"
           :headers="headers"
           :items-per-page="0"
-          :loading="loading"
           class="v-table--round v-table--spacing v-table--padding bg-transparent"
         >
           <template #item.operationType="{ item }">
@@ -25,7 +24,6 @@
         <FlexibleTable
           v-else
           :headers="headers"
-          :loading="loading"
           :items="items"
           :isBalance="true"
         >

@@ -23,7 +23,7 @@
         :close-on-back="true"
       >
         <v-date-picker v-model="localDate" />
-        <!-- <DatePicker :localDate="localDate"></DatePicker> -->
+        <!-- <DatePickerComponent :localDate="localDate"></DatePickerComponent> -->
       </v-menu>
     </template>
   </v-text-field>
@@ -33,7 +33,7 @@ import { watch, ref, computed } from "vue";
 import { DEFAULT_DATE_FORMAT } from "@/types";
 import { date } from "@/utils";
 import { CalendarIcon } from "@components/icons";
-import DatePicker from "../DatePicker.vue";
+import DatePickerComponent from "./DatePickerComponent.vue";
 
 interface Props {
   modelValue: string | null;

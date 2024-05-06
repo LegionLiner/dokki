@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :items-per-page="0" :headers="headers" :items="items" :loading="loading"
+  <v-data-table :items-per-page="0" :headers="headers" :items="items"
     :sort-by="[{ key: `displayOrder`, order: `asc` }]"
     class="v-table--round v-table--spacing v-table--padding bg-transparent">
     <template #bottom />

@@ -118,6 +118,9 @@ i::before {
   border-radius: 5px;
   padding: 2px;
   z-index: 1000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media (width < 600px) {
     width: 67px;
@@ -133,6 +136,9 @@ i::before {
     color: #383838;
     border-radius: 5px;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &[disabled=true] {
       color: rgba(155, 171, 200, 1);
