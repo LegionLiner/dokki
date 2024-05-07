@@ -74,6 +74,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SettingsIcon: typeof import('./src/components/icons/SettingsIcon.vue')['default']
     SignatureGenerator: typeof import('./src/components/generator/SignatureGenerator.vue')['default']
+    SubscriptionIcon: typeof import('./src/components/icons/SubscriptionIcon.vue')['default']
     TemplateForm: typeof import('./src/components/template/TemplateForm.vue')['default']
     TemplateGenerator: typeof import('./src/components/generator/TemplateGenerator.vue')['default']
     TemplateIcon: typeof import('./src/components/icons/TemplateIcon.vue')['default']

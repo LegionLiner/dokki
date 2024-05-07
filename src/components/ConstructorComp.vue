@@ -1488,7 +1488,7 @@ export default {
 
   &>span:nth-child(1) {
     background: $primary;
-    height: 28px;
+    height: 32px;
     width: 72px;
     text-align: center;
     display: inline-flex;
@@ -1505,7 +1505,7 @@ export default {
     display: inline-flex;
     flex-grow: 1;
     align-items: center;
-    height: 28px;
+    height: 32px;
     padding-left: 10px;
     white-space: nowrap;
     overflow: hidden;
@@ -1655,8 +1655,7 @@ export default {
       padding: 19px;
 
       @media (max-width: $md) {
-        padding: 0px;
-        background: transparent;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;

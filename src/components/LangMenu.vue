@@ -76,9 +76,6 @@ const currentLanguage = computed<string>(() =>
       color: #188BF1;
     }
 
-    .v-list-item__content {
-      margin-left: 10px;
-    }
   }
 
   &__items {
@@ -111,6 +108,13 @@ const currentLanguage = computed<string>(() =>
 
   @media (width < 1280px) {
     width: auto;
+
+    .v-list-item__content {
+      margin-left: 10px;
+    }
+    .v-list-item__append {
+      width: 30px;
+    }
   }
 }
 </style>

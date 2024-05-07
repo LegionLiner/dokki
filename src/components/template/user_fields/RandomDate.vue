@@ -129,8 +129,9 @@ watch(template, (data) => emit("update:model-value", JSON.stringify(data)), {
 <style lang="scss" scoped>
 @import "vuetify/lib/styles/settings/_variables";
 .day-week {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .last-item {
@@ -139,10 +140,6 @@ watch(template, (data) => emit("update:model-value", JSON.stringify(data)), {
 }
 
 @media #{map-get($display-breakpoints, 'sm-and-down')} {
-  .day-week {
-    display: flex;
-    flex-wrap: wrap;
-  }
   .last-item {
     display: block;
   }

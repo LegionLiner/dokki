@@ -140,7 +140,6 @@
     v-else-if="modelValue.source === Source.USER_COUNTRYSELECTOR"
     :model-value="value"
     :items="countries"
-    :loading="countriesLoading"
     :id="exactId"
     :disabled="disabled"
     :rules="rules"

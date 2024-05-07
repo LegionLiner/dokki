@@ -34,7 +34,7 @@ const containerClass = computed(() => route.meta?.containerClass);
   min-height: calc(100vh - $margin-x-double);
 
   @media #{map-get($display-breakpoints, 'md-and-down')} {
-    padding: 24px 20px;
+    padding: 4px 20px;
     margin: 0;
     min-height: calc(100vh - $header-height - $navigation-height);
   }

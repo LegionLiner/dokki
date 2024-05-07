@@ -14,7 +14,7 @@
           :items="items"
           :headers="headers"
           :items-per-page="0"
-          class="v-table--round v-table--spacing v-table--padding bg-transparent"
+          class="v-table--round v-table--spacing v-table--padding bg-transparent balance-table-descktop"
         >
           <template #item.operationType="{ item }">
             <OperationTypeComponent :operation-type="item.operationType" />
@@ -202,5 +202,17 @@ onBeforeMount(async () => {
 .v-table .v-table__wrapper>table>tbody>tr:not(:last-child)>td,
 .v-table .v-table__wrapper>table>tbody>tr:not(:last-child)>th {
   border-bottom: none !important;
+}
+.balance-table-descktop > .v-table__wrapper > table > thead > tr:last-child > th:nth-child(1) {
+  width: 130px;
+}
+.balance-table-descktop > .v-table__wrapper > table > thead > tr:last-child > th:nth-child(2) {
+  width: 200px;
+}
+.balance-table-descktop > .v-table__wrapper > table > thead > tr:last-child > th:nth-child(3) {
+  width: 200px;
+}
+.balance-table-descktop > .v-table__wrapper > table > thead > tr:last-child > th:nth-child(4) {
+  width: 200px;
 }
 </style>

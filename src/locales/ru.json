@@ -130,6 +130,13 @@
   "manualEnter": "Ручной ввод",
   "compute": "Высчитать",
   "actions": "Действия",
+  "buy": "Купить",
+  "period": "Период",
+  "selectPeriod": "Выберите период",
+  "CostPerDay": "Цена за день",
+  "CostPerMonth": "Цена за месяц",
+  "buySubscription": "Купить подписку",
+  "noSubscriptions": "У вас ещё нет подписок",
   "links": {
     "home": "Главная",
     "services": "Услуги",
@@ -140,6 +147,7 @@
     "orders": "Заказы",
     "balance": "Баланс",
     "support": "Поддержка",
+    "subscription": "Подписка",
     "admin": {
       "panel": "Администратор",
       "orders": "Заказы",
@@ -191,7 +199,9 @@
     "balance": "Баланс",
     "enroller": "Регистрирующий",
     "comment": "Комментарий",
-    "tags": "Теги"
+    "tags": "Теги",
+    "start": "Дата начала",
+    "end": "Дата окончания"
   },
   "labels": {
     "title": "Название",
@@ -231,13 +241,13 @@
     "parentTemplate": "Родительский шаблон"
   },
   "dayWeek": {
-    "sunday": "Воскресенье",
-    "monday": "Понедельник",
-    "tuesday": "Вторник",
-    "wednesday": "Среда",
-    "thursday": "Четверг",
-    "friday": "Пятница",
-    "saturday": "Суббота"
+    "sunday": "Вc",
+    "monday": "Пy",
+    "tuesday": "Вт",
+    "wednesday": "Ср",
+    "thursday": "Чт",
+    "friday": "Пт",
+    "saturday": "Сб"
   },
   "yearMonth": {
     "january": "Январь",

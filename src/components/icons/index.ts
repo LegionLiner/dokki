@@ -20,6 +20,7 @@ import TemplateIcon from "@components/icons/TemplateIcon.vue";
 import TrashIcon from "@components/icons/TrashIcon.vue";
 import EarthIcon from "@components/icons/EarthIcon.vue";
 import CalendarIcon from "@components/icons/CalendarIcon.vue";
+import SubscriptionIcon from "@components/icons/SubscriptionIcon.vue";
 
 export {
   AdminIcon,
@@ -44,4 +45,5 @@ export {
   TrashIcon,
   EarthIcon,
   CalendarIcon,
+  SubscriptionIcon,
 };

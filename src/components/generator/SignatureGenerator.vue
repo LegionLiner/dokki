@@ -24,7 +24,7 @@
             id="uploadSignature"
             rounded="0 e-lg"
             variant="plain"
-            bg-color="blue2"
+            bg-color="blue2" 
             :multiple="false"
             :disabled="noSignature"
           >

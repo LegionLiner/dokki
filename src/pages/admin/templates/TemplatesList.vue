@@ -59,7 +59,6 @@
           :items="templates"
           :headers="headers"
           :items-per-page="0"
-          :loading="templatesLoading"
           class="v-table--round v-table--spacing v-table--padding bg-transparent"
         >
           <template #item.actions="{ item }">

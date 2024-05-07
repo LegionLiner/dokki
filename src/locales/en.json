@@ -130,6 +130,13 @@
   "manualEnter": "Manual enter",
   "compute": "Compute",
   "actions": "Actions",
+  "buy": "Buy",
+  "period": "Period",
+  "selectPeriod": "Select period",
+  "CostPerDay": "Cost per day",
+  "CostPerMonth": "Cost per month",
+  "buySubscription": "Buy subscription",
+  "noSubscriptions": "You don't have subscriptions yet",
   "links": {
     "home": "Home",
     "services": "Services",
@@ -140,6 +147,7 @@
     "orders": "Orders",
     "balance": "Balance",
     "support": "Support",
+    "subscription": "Subscription",
     "admin": {
       "panel": "Admin Panel",
       "orders": "Orders",
@@ -191,7 +199,9 @@
     "balance": "Balance",
     "enroller": "Enroller",
     "comment": "Comment",
-    "tags": "Tags"
+    "tags": "Tags",
+    "start": "Date start",
+    "end": "Date end"
   },
   "labels": {
     "title": "Name",
@@ -231,13 +241,13 @@
     "parentTemplate": "Parent Template"
   },
   "dayWeek": {
-    "sunday": "Sunday",
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday"
+    "sunday": "Su",
+    "monday": "Mo",
+    "tuesday": "Tu",
+    "wednesday": "We",
+    "thursday": "Th",
+    "friday": "Fr",
+    "saturday": "Sa"
   },
   "yearMonth": {
     "january": "January",

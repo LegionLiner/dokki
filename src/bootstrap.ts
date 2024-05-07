@@ -11,6 +11,7 @@ import {
   TranslationInfra,
   GenerateInfra,
   AddressInfra,
+  SubscriptionInfra,
 } from "@infra/api";
 import {
   AuthService,
@@ -28,6 +29,7 @@ import {
   TranslationService,
   GenerateService,
   AddressService,
+  SubscriptionService,
 } from "@/services";
 import { FAQFirebaseInfra } from "@infra/firebase";
 import { jwtDecode, type JwtPayload } from "jwt-decode";
@@ -75,6 +77,9 @@ const balanceService = new BalanceService(balance);
 const localeService = new LocaleService("locale");
 const autodata = new AutodataInfra(http);
 const autodataService = new AutodataService(autodata);
+const subscription = new SubscriptionInfra(http);
+const subscriptionService = new SubscriptionService(subscription);
+
 const translation = new TranslationInfra(
   new Http(
     new AxiosClient({
@@ -154,4 +159,5 @@ export {
   generateService,
   client as axiosInstance,
   addressService,
+  subscriptionService,
 };

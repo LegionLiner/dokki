@@ -13,6 +13,7 @@ import AutodataService from "@services/autodata/autodata_service";
 import TranslationService from "@services/translation/translation_service";
 import GenerateService from "@services/generate/generate_service";
 import AddressService from "@services/address/address_service";
+import SubscriptionService from "@services/subscription/subscription_service";
 
 export {
   AuthService,
@@ -30,4 +31,5 @@ export {
   TranslationService,
   GenerateService,
   AddressService,
+  SubscriptionService,
 };

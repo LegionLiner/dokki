@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, markRaw, ref, watch } from "vue";
+import { computed, markRaw, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import * as Icon from "@components/icons";
@@ -98,6 +98,12 @@ const menu = computed<MenuItem[]>(() => {
       value: "client.balance",
       icon: markRaw(Icon.BalanceIcon),
       to: { name: "balance" },
+    },
+    {
+      title: t("links.subscription"),
+      value: "client.subscription",
+      icon: markRaw(Icon.SubscriptionIcon),
+      to: { name: "subscription" },
     },
     {
       title: t("links.support"),

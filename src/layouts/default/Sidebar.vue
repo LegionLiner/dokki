@@ -11,7 +11,7 @@
         <v-list dense nav>
           <v-list-item link :title="$t(`logout`)" @click="$emit(`logout`, $emit)" class="logout">
             <template #prepend>
-              <ExitIcon class="mr-2" />
+              <ExitIcon />
             </template>
           </v-list-item>
         </v-list>

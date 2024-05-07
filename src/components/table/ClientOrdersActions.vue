@@ -30,7 +30,7 @@
     {{ $t("actions") }}
     <i class="mdi-chevron-down mdi v-icon notranslate v-theme--LightTheme v-icon--size-default"></i>
     <teleport to='body'>
-      <div class="list" v-if="opened" :style="{ top: `${offsetTop + 37}px`, left: `${offsetLeft}px` }">
+      <div class="list" v-if="opened" :style="{ top: `${offsetTop + 37}px`, left: `${offsetLeft}px`, '--left': `${offsetLeft}px` }">
         <div class="element" :disabled="modelValue.status !== Status.Created" @click="run">
           {{ $t("start") }}
         </div>
@@ -88,7 +88,7 @@ function run() {
   }
 }
 
-function copy() {
+function copy() {  
   if (props.modelValue.templateId) {
     emits("copy", props.modelValue.id);
   }
@@ -189,11 +189,8 @@ i::before {
   white-space: nowrap;
 
   @media (width < 600px) {
-    width: 67px;
-    gap: 2px;
-  }
-  @media (width < 450px) {
-    width: 47px;
+    left: calc(var(--left) - 24px) !important;
+    width: 90px;
     gap: 2px;
   }
 

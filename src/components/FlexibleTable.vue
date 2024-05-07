@@ -29,7 +29,7 @@
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="row.id">
-          <td v-for="(cell, cellIndex) in row.cells" class="flexible__cell flexible__cell_truncate text-truncate pa-2"
+          <td v-for="(cell, cellIndex) in row.cells" class="flexible__cell flexible__cell_truncate text-truncate pa-2 cell-items-center"
             :key="cellIndex" :class="{
               'flexible__cell_rounded-start': cellIndex === 0,
               'flexible__cell_rounded-end': cellIndex === row.cells.length - 1,
@@ -136,6 +136,9 @@ const rows = computed<FlexibleTableRow[]>(() => {
     background-color: #fff;
 
     &_truncate {
+      @media (width < 900px) {
+        text-align: center;
+      }
       max-width: 0;
     }
 
@@ -228,13 +231,27 @@ const rows = computed<FlexibleTableRow[]>(() => {
 }
 
 .template-table {
+  // .flexible__cell_truncate {
+  //   max-width: auto;
+  // }
+  @media (width < 600px) {
+    * {
+      font-size: 9px !important;
+    }
+    tbody > tr > td.text-truncate:first-child {
+        white-space: wrap;
+    }
+  }
+  td, th {
+    text-align: center;
+  }
   > thead> tr {
     th {
       white-space: normal !important;
     }
   }
   >thead>tr:last-child {
-    >th:nth-child(7) {
+    >th:nth-child(5), >th:nth-child(7) {
       @media (width < 1050px) {
         display: none;
       }
@@ -242,11 +259,12 @@ const rows = computed<FlexibleTableRow[]>(() => {
   }
 
   >tbody>tr {
-    >td:nth-child(7) {
+    >td:nth-child(5), >td:nth-child(7) {
       @media (width < 1050px) {
         display: none;
       }
     }
+    
   }
 }
 </style>

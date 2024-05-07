@@ -9,6 +9,7 @@ import AutodataInfra from "@infra/api/autodata/autodata";
 import TranslationInfra from "@infra/api/translation/translation";
 import GenerateInfra from "@infra/api/generate/generate";
 import AddressInfra from "@infra/api/address/address";
+import SubscriptionInfra from "@infra/api/subscription/subscription";
 
 export {
   AuthInfra,
@@ -22,4 +23,5 @@ export {
   TranslationInfra,
   GenerateInfra,
   AddressInfra,
+  SubscriptionInfra,
 };

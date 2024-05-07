@@ -8,6 +8,7 @@ import { setupLayouts } from "virtual:generated-layouts";
 import useUserStore from "@stores/user";
 import Index from "@pages/Index.vue";
 import type { UserType } from "@/types";
+import { subscriptionService } from "@/bootstrap";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -22,6 +23,17 @@ declare module "vue-router" {
 const onlyAdmin: UserType[] = ["ADMIN"];
 const onlyGuest: UserType[] = ["GUEST"];
 const userAdmin: UserType[] = ["ADMIN", "USER"];
+
+async function hasSubscription(): Promise<boolean> {
+  const response = await subscriptionService.getSubscription();
+
+  if (response.meta.success) {
+    return response.data.subscriptions.length > 0;
+  } else {
+    console.log(response.meta.message);
+    return false;
+  }
+}
 
 const routes = setupLayouts([
   {
@@ -227,6 +239,16 @@ const routes = setupLayouts([
     },
   },
   {
+    path: "/subscription",
+    name: "subscription",
+    component: () => import("@pages/client/Subscription.vue"),
+    meta: {
+      title: "Subscription",
+      containerClass: "image-bg",
+      authenticated: userAdmin,
+    },
+  },
+  {
     path: "/support",
     name: "support",
     component: () => import("@pages/client/Support.vue"),
@@ -290,7 +312,6 @@ const routes = setupLayouts([
       },
     ],
   },
-
   {
     path: "/admin/faq",
     name: "admin.faq",
@@ -308,7 +329,7 @@ const router = createRouter({
 });
 
 router.beforeEach(
-  (
+  async (
     to: RouteLocationNormalized,
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
@@ -322,6 +343,9 @@ router.beforeEach(
       // if usertype cannot visit the route
       if (!isAuthenticated) {
         return next({ name: redirectTo });
+      }
+      if (to.name === "subscription") {
+        to.meta.hasSubscription = await hasSubscription();
       }
     }
 

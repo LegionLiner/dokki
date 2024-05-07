@@ -97,22 +97,22 @@ watchEffect(() => {
 </script>
 
 <style lang="scss">
-.v-table > .v-table__wrapper > table > thead > tr:last-child > th:last-child {
+.v-table:not(.balance-table-descktop) > .v-table__wrapper > table > thead > tr:last-child > th:last-child {
   width: 100px !important;
 }
 .v-table > .v-table__wrapper > table > thead > tr:last-child > th:first-child {
   width: 70px !important;
 }
-.v-table > .v-table__wrapper > table > thead > tr:last-child {
+.v-table:not(.balance-table-descktop) > .v-table__wrapper > table > thead > tr:last-child {
   > th:nth-child(5) {
     width: 150px !important;
   }
   > th:nth-child(6), > th:nth-child(7), > th:nth-child(8) {
     width: 80px !important;
 
-    @media (width < 1450px) {
-      display: none;
-    }
+    // @media (width < 1450px) {
+    //   display: none;
+    // }
   }
   > th:nth-child(9) {
     width: 240px !important;
@@ -122,9 +122,9 @@ watchEffect(() => {
   > td:nth-child(6), > td:nth-child(7), > td:nth-child(8) {
     width: 80px !important;
 
-    @media (width < 1450px) {
-      display: none;
-    }
+    // @media (width < 1450px) {
+    //   display: none;
+    // }
   }
 }
 </style>

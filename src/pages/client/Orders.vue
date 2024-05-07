@@ -65,13 +65,14 @@
             <ClientOrdersActions 
             :model-value="item" 
             @delete="deleteId = id" 
+            @copy="redirectToGenerator(item.id)"
             @run="runOrder($event)"
             @fetchFile="fetchFiles(id)"
             :files="fetching[id]?.files || []"
             :downloadFileUrl="downloadFileUrl" />
           </template>
           <template #item.files="{ row: { id } }">
-            <div class="mb-2 my-lg-2">
+            <div class="mb-2 my-lg-2 wrap-spaces">
               <v-btn v-if="!fetching[id].fetched && !isMobile" variant="outlined" color="primary" class="v-btn-action"
                 size="x-small" :class="{
                   'v-btn-action__icon': isShort,
@@ -727,6 +728,12 @@ onBeforeMount(async () => {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+  }
+}
+.wrap-spaces {
+  white-space: normal !important;
+  a {
+    margin-bottom: 4px;
   }
 }
 </style>

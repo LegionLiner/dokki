@@ -118,3 +118,12 @@ export interface GetAddressParams {
   countryId: number;
   city?: string;
 }
+
+export interface Subscription {
+    id: number;
+    period: number;
+    count: number;
+}
+export interface SubscriptionParams {
+    subscriptions: Subscription[];
+}

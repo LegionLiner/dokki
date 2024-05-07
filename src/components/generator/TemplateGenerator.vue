@@ -210,7 +210,7 @@
                 <Close @click="isSubfieldsModalShown = false" class="cursor-pointer"></Close>
               </div>
             </template>
-            <div class="subfield pa-4 br-16 mb-2">
+            <div class="subfield py-4 br-16 mb-2">
               <v-form v-model="isSubfieldsFormValid" @submit.prevent :key="1">
                 <div class="subfield__form d-flex flex-column gc-1 gc-sm-4">
                   <template v-for="field in subfield?.fields" :key="field.id">
@@ -1422,6 +1422,9 @@ onBeforeMount(async () => {
     &__sample {
       order: 1;
     }
+    .buttons_wrapper > div:nth-child(1) {
+      display: none;
+    }
   }
 }
 
@@ -1452,7 +1455,6 @@ onBeforeMount(async () => {
 }
 
 .subfield {
-
   &__form {
     row-gap: 6px;
   }
