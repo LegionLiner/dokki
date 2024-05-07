@@ -33,7 +33,7 @@ watch(selected, (value) => {
   let newValue;
 
   if (typeof value === "object") {
-    newValue = value;
+    newValue = value.value;
   } else if (typeof value === "string") {
     newValue = value;
   } else {
