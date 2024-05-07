@@ -27,6 +27,11 @@
           :items="items"
           :isBalance="true"
         >
+          <template #item.date="{ row: { item } }">
+            <div class="mb-2 my-lg-2 wrap-spaces">
+             {{ formatDate(item.date) }}
+            </div>
+          </template>
           <template #item.operationType="{ cell }">
             <OperationTypeComponent :operation-type="cell.value" />
           </template>
@@ -178,6 +183,10 @@ const fetchBalance = async () => {
 
   loading.value = false;
 };
+
+function formatDate(date: string) {
+  return date.slice(0, 6) + date.split('/')[2].slice(2, 4)
+}
 
 watch(page, (value) => (start.value = count.value * (value - 1)));
 watch(start, () => fetchBalance());

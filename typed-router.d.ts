@@ -26,7 +26,6 @@ declare module 'vue-router/auto-routes' {
     '/admin/templates/TemplatesList': RouteRecordInfo<'/admin/templates/TemplatesList', '/admin/templates/TemplatesList', Record<never, never>, Record<never, never>>,
     '/client/AAMVA': RouteRecordInfo<'/client/AAMVA', '/client/AAMVA', Record<never, never>, Record<never, never>>,
     '/client/Balance': RouteRecordInfo<'/client/Balance', '/client/Balance', Record<never, never>, Record<never, never>>,
-    '/client/DateAAA': RouteRecordInfo<'/client/DateAAA', '/client/DateAAA', Record<never, never>, Record<never, never>>,
     '/client/Docs': RouteRecordInfo<'/client/Docs', '/client/Docs', Record<never, never>, Record<never, never>>,
     '/client/generator/AAMVA': RouteRecordInfo<'/client/generator/AAMVA', '/client/generator/AAMVA', Record<never, never>, Record<never, never>>,
     '/client/generator/Docs': RouteRecordInfo<'/client/generator/Docs', '/client/generator/Docs', Record<never, never>, Record<never, never>>,

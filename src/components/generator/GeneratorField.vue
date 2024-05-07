@@ -79,14 +79,12 @@
     @update:modelValue="$emit(`update:value`, $event)"
   />
 
-  <DatePickerButton
+  <DatePickerInput
     v-else-if="modelValue.source === Source.RANDOMDATEWITHCALENDAR"
     :model-value="value"
+    :value="value"
     :id="exactId"
-    :text="$t(`random`)"
     :format="format"
-    :disabled="disabled"
-    :rules="rules"
     @update:modelValue="$emit(`update:value`, $event)"
     @button:click="$emit(`random`, $event)"
     class="date-picker"
@@ -101,7 +99,7 @@
       :text="$t(`compute`)"
       @click="$emit(`compute`)"
     />
-  </DatePickerButton>
+  </DatePickerInput>
 
   <MonthSelector
     v-else-if="modelValue.source === Source.USER_MONTHSELECTOR"
@@ -243,7 +241,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { useI18n } from "vue-i18n";
 import { Source } from "@/dict/sources";
 import type { UserFieldShort, TemplateShort } from "@services/types";
@@ -262,6 +260,7 @@ import CustomSelector from "@components/generator/CustomSelector.vue";
 import CountrySelector from "@components/generator/CountrySelector.vue";
 import ContainerButton from "@components/generator/ContainerButton.vue";
 import Modal from "../constructor/Modal.vue";
+import DatePickerInput from "./DatePicker/DatePickerInput.vue";
 
 interface Props {
   modelValue: UserFieldShort;

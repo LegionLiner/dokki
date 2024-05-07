@@ -2,11 +2,10 @@
     <v-container fluid class="px-0">
         <v-row>
             <v-col cols="12" class="my-0 py-0 px-6">
-                <h1 class="page-title" @click="show = !show">
+                <h1 class="page-title">
                     {{ $t("links.subscription") }}
                 </h1>
             </v-col>
-            <DateAAA v-if="show"></DateAAA>
         </v-row>
         <v-row>
             <div class="main-container-subscription">
@@ -30,7 +29,7 @@
                             {{ subscription.name }}
                         </div>
                         <div>
-                            {{ subscription.subscriptionType }}
+                            {{ types[subscription.subscriptionType] }}
                         </div>
                         <div>
                             {{ subscription.startDate }}
@@ -101,9 +100,6 @@
 import { computed, ref, onBeforeMount } from "vue";
 import { subscriptionService } from "@/bootstrap";
 import { useRouter } from "vue-router";
-import DateAAA from './DateAAA.vue';
-
-const show = ref(false);
 
 interface Subscription {
     name: string;
@@ -126,6 +122,11 @@ const router = useRouter();
 const allSubscriptions = ref<Subscription[]>([]);
 const mySubscriptions = ref<MySubscription[]>([]);
 
+const types = ref({
+    1: "MRZ Generation",
+    2: "PN Generation",
+    3: "MRZ Generation, PN Generation",
+})
 const periods = ref([
     {
         title: "Day",
@@ -133,7 +134,7 @@ const periods = ref([
     },
     {
         title: "Month",
-        value: 1,
+        value: 2,
     },
 ]);
 const subItems = computed(() => {

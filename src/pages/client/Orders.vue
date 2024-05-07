@@ -31,6 +31,11 @@
       <v-col>
         <v-data-table v-if="lgAndUp" class="v-table--round v-table--spacing v-table--padding bg-transparent desktop-table" sticky
           :items="orders" :headers="headers" :items-per-page="0">
+          <template #item.date="{ item }">
+            <div class="mb-2 my-lg-2 wrap-spaces">
+             {{ formatDate(item.date) }}
+            </div>
+          </template>
           <template #item.actions="{ item }">
             <ClientOrdersActions :model-value="item" @delete="deleteId = item.id" @copy="redirectToGenerator(item.id)"
               @run="runOrder(item.id)" />
@@ -70,6 +75,11 @@
             @fetchFile="fetchFiles(id)"
             :files="fetching[id]?.files || []"
             :downloadFileUrl="downloadFileUrl" />
+          </template>
+          <template #item.date="{ row: { item } }">
+            <div class="mb-2 my-lg-2 wrap-spaces">
+             {{ formatDate(item.date) }}
+            </div>
           </template>
           <template #item.files="{ row: { id } }">
             <div class="mb-2 my-lg-2 wrap-spaces">
@@ -537,6 +547,10 @@ const redirectToGenerator = (id: number) => {
     params,
   });
 };
+
+function formatDate(date: string) {
+  return date.slice(0, 6) + date.split('/')[2].slice(2, 4)
+}
 
 watch(ordersData, (value) => {
   const newFetching = value.reduce<Record<string, FetchFile>>(

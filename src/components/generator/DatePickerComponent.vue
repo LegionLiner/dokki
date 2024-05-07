@@ -133,8 +133,6 @@
 defineProps<{
     localDate: any
 }>();
-console.log('localDate', props.localDate);
-
 </script>
 
 <style lang="scss" scoped>

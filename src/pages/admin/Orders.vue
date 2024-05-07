@@ -36,7 +36,13 @@
           class="v-table--round v-table--spacing v-table--padding bg-transparent text-truncate">
           <template #bottom />
         </v-data-table>
-        <FlexibleTable v-else :headers="headers" :items="orders" :isOrders="true" />
+        <FlexibleTable v-else :headers="headers" :items="orders" :isOrders="true">
+          <template #item.date="{ row: { item } }">
+            <div class="mb-2 my-lg-2 wrap-spaces">
+             {{ formatDate(item.date) }}
+            </div>
+          </template>
+        </FlexibleTable>
       </v-col>
     </v-row>
     <template v-if="!!orders.length">
@@ -48,6 +54,7 @@
     </template>
   </v-container>
 </template>
+
 <script lang="ts" setup>
 import { computed, ref, onBeforeMount, reactive, watch } from "vue";
 import { useToast } from "vue-toastification";
@@ -281,6 +288,10 @@ const runFetch = () => {
   fetchOrders();
 };
 
+function formatDate(date: string) {
+  return date.slice(0, 6) + date.split('/')[2].slice(2, 4)
+}
+
 const debounceFetch = debounce(() => {
   // drop page number if it's not first
   // watcher runs fetch
@@ -310,6 +321,7 @@ onBeforeMount(async () => {
   await Promise.allSettled([fetchCountries(), fetchOrders()]);
 });
 </script>
+
 <style lang="scss">
 @import "vuetify/lib/styles/settings/_variables";
 

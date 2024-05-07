@@ -8,7 +8,11 @@
           class="v-select-white"
           :label="$t(`selectCountry`)"
           :items="items"
-        />
+        >
+        <template v-slot:item="{ props, item }">
+          <v-list-item v-bind="props" :subtitle="item.value" />
+        </template>
+        </v-combobox>
 </template>
 <script lang="ts" setup>
 import { ref, watch } from "vue";

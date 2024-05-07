@@ -49,9 +49,7 @@ const currentLanguage = computed<string>(() =>
     }
   }
   .background {
-    // background: #E3F1FD;
     background: none;
-    padding-right: 8px !important;
 
     @media (width < 1280px) {
       &.v-list-item--active {
@@ -96,7 +94,6 @@ const currentLanguage = computed<string>(() =>
 }
 
 .lang-menu-list {
-  width: 191px;
   padding-bottom: 0px;
   background: none;
 
