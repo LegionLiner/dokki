@@ -22,8 +22,8 @@ defineProps({
     position: fixed;
     top: 0;
     width: 100%;
-    height: -webkit-fill-available;
-    padding: 300px 0 100px 0;
+    height: 100dvh;
+    padding: 100px 0;
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
