@@ -1,5 +1,5 @@
 <template>
-    <input ref="inputRef" v-model="inputValue" class="date-input" :placeholder="placeholder">
+    <input ref="inputRef" v-model="inputValue" class="date-input">
 </template>
 
 <script lang="ts" setup>
@@ -12,14 +12,6 @@ const emit = defineEmits(['changeDate']);
 
 const inputRef = ref<HTMLInputElement | null>(null);
 const inputValue = ref<string>('');
-const placeholder = computed(() => {
-    const day = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-    const year = new Date().getFullYear();
-
-    return `${day > 9 ? day : `0${day}`}/${month > 9 ? month : `0${month}`}/${year}`;
-})
-
 
 watch(props, () => {
     inputValue.value = props.currentDate as string;
