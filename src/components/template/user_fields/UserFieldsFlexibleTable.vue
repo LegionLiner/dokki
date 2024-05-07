@@ -87,7 +87,7 @@
       />
     </template>
     <template #item.actions="{ row: { id } }">
-      <ItemActions @itemEdit="$emit(`edit`, id)" @itemDuplicate="$emit(`duplicate`, id)" @itemDelete="$emit(`delete`, id)"></ItemActions>
+      <ItemActions :id="id" @itemEdit="$emit(`edit`, id)" @itemDuplicate="$emit(`duplicate`, id)" @itemDelete="$emit(`delete`, id)"></ItemActions>
     </template>
   </FlexibleTable>
 </template>

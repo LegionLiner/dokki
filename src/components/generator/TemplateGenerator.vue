@@ -1353,14 +1353,6 @@ watchEffect(async () => {
   }
 });
 
-watch(() => {
-  if (signatureModal.value || photoModal.value) {
-    document.querySelector("html").style.overflow = "hidden";
-  } else {
-    document.querySelector("html").style.overflow = "auto";
-  }
-});
-
 watch(noSignature, () => {
   if (noSignature.value) {
     clearSignature();

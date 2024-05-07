@@ -102,6 +102,11 @@ const props = defineProps({
 });
 const emit = defineEmits(['button:click', 'update:modelValue']);
 
+let values = [1, 1, 1951];
+if (props.modelValue) {
+    values = props.modelValue.split('/');
+}
+
 const show = ref(false);
 const dateSelectWrapper = ref(null);
 
@@ -109,6 +114,20 @@ const scrollDay = ref(null);
 const scrollMonth = ref(null);
 const scrollYear = ref(null);
 
+const activeDates = reactive({
+    day: {
+        active: +values[0],
+        shown: +values[0]
+    },
+    month: {
+        active: +values[1],
+        shown: +values[1]
+    },
+    year: {
+        active: +values[2] - 1950,
+        shown: +values[2] - 1950
+    }
+})
 const activeDays = computed(() => {
     const day = month[activeDates.month.shown - 1]?.days_count;
     if (activeDates.day.active > day) {
@@ -118,30 +137,17 @@ const activeDays = computed(() => {
     return day;
 });
 const currentDate = computed(() => {
-    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1950}`);
-
     if (!activeDates.year.active && !activeDates.month.active) {
+        emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`);
         return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`;
     }
     if (!activeDates.year.active) {
+        emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`);
         return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`;
     }
+    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1950}`);
     return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1950}`;
 });
-const activeDates = reactive({
-    day: {
-        active: 2,
-        shown: 2
-    },
-    month: {
-        active: 2,
-        shown: 2
-    },
-    year: {
-        active: 2,
-        shown: 2
-    }
-})
 
 function changeActiveElement(event: any, on: string) {
     if (event.deltaY > 0) {
@@ -329,8 +335,9 @@ watch(show, () => {
     deep: true,
     flush: 'post'
 });
-watch(() => props.modelValue, () => {
+watch(props, () => {
     const values = props.modelValue.split('/');
+
     activeDates.day.active = +values[0];
     activeDates.day.shown = activeDates.day.active;
 
@@ -339,6 +346,8 @@ watch(() => props.modelValue, () => {
 
     activeDates.year.active = +values[2] - 1950;
     activeDates.year.shown = activeDates.year.active;
+}, {
+    deep: true
 })
 
 onMounted(() => {

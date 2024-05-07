@@ -23,6 +23,8 @@ watch(inputValue, () => {
 });
 
 onMounted(() => {
+    inputValue.value = props.currentDate as string;
+
     inputRef.value.addEventListener('keydown', (event) => {
         if (event.key !== 'Backspace') {
             if (inputValue.value.length == 2) {

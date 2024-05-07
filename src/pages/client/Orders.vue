@@ -37,8 +37,14 @@
             </div>
           </template>
           <template #item.actions="{ item }">
-            <ClientOrdersActions :model-value="item" @delete="deleteId = item.id" @copy="redirectToGenerator(item.id)"
-              @run="runOrder(item.id)" />
+            <ClientOrdersActions 
+              :model-value="item" 
+              @delete="deleteId = id" 
+              @copy="redirectToGenerator(item.id)"
+              @run="runOrder($event)"
+              @fetchFile="fetchFiles(id)"
+              :files="fetching[id]?.files || []"
+              :downloadFileUrl="downloadFileUrl" />
           </template>
           <template #item.files="{ item }">
             <div class="mb-2 my-lg-2" :class="{
@@ -531,7 +537,6 @@ const deleteOrder = async () => {
 
 const redirectToGenerator = (id: number) => {
   const order = ordersData.value.find(({ id: orderId }) => orderId === id);
-
   if (!order) {
     return;
   }

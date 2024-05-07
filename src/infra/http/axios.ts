@@ -21,7 +21,7 @@ export default class AxiosClient {
     params,
   }: RequestSignature): Promise<Response> {
     try {
-      console.log(url, method, data, config, params, '---', this);
+      // console.log(url, method, data, config, params, '---', this);
       
       const response = await this.instance.request({
         url,

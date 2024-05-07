@@ -125,7 +125,7 @@ document.addEventListener('click', (e: any) => {
 <style lang="scss" scoped>
 .mobile-actions {
   user-select: none;
-  width: 80px;
+  width: 90px;
   position: relative;
   justify-content: space-between;
   border: 1px solid rgba(227, 241, 253, 1);
@@ -136,12 +136,12 @@ document.addEventListener('click', (e: any) => {
   transition: background 0.15s;
 
   @media (width < 600px) {
-    width: 67px;
+    width: 77px;
     padding: 8px 4px;
     gap: 2px;
   }
   @media (width < 450px) {
-    width: 47px;
+    width: 57px;
     padding: 8px 4px;
     gap: 2px;
 
@@ -169,7 +169,7 @@ i::before {
 }
 
 .list {
-  width: 80px;
+  width: 90px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -190,7 +190,7 @@ i::before {
 
   @media (width < 600px) {
     left: calc(var(--left) - 24px) !important;
-    width: 90px;
+    width: 100px;
     gap: 2px;
   }
 

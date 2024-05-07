@@ -5,7 +5,7 @@
     :active="active"
     :height="height"
   >
-    <template v-for="item in menu" :key="`${item.name} - ${index}`">
+    <template v-for="item in menu" :key="item.name">
       <template v-if="item?.divider === undefined">
         <v-menu v-if="item.children?.length">
           <template v-slot:activator="{ props }">
