@@ -73,8 +73,8 @@
                 <div class="scroll-main" ref="scrollYear" @wheel="changeActiveElement($event, `scrollYear`)"
                     @touchend="changeActiveElementMobile($event, `scrollYear`)">
                     <div class="scroll-main-item" style="height: 38px;"></div>
-                    <div v-for="i in 100" class="scroll-main-item" :key="i">
-                        {{ 1950 + i }}
+                    <div v-for="i in 200" class="scroll-main-item" :key="i">
+                        {{ 1900 + i }}
                     </div>
                     <div class="scroll-main-item" style="height: 38px;"></div>
                 </div>
@@ -102,7 +102,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['button:click', 'update:modelValue']);
 
-let values = [1, 1, 1951];
+let values = [0, 1, 1901];
 if (props.modelValue) {
     values = props.modelValue.split('/');
 }
@@ -116,27 +116,32 @@ const scrollYear = ref(null);
 
 const activeDates = reactive({
     day: {
-        active: +values[0],
+        active: null,
         shown: +values[0]
     },
     month: {
-        active: +values[1],
+        active: null,
         shown: +values[1]
     },
     year: {
-        active: +values[2] - 1950,
-        shown: +values[2] - 1950
+        active: null,
+        shown: +values[2] - 1900
     }
-})
+});
 const activeDays = computed(() => {
     const day = month[activeDates.month.shown - 1]?.days_count;
     if (activeDates.day.active > day) {
         activeDates.day.active = day;
         activeDates.day.shown = day;
     }
-    return day;
+    return day || 31;
 });
 const currentDate = computed(() => {
+    console.log(activeDates, 'activeDates');
+    if (!activeDates.year.active && !activeDates.month.active && !activeDates.day.active) {
+        emit('update:modelValue', ``);
+        return ``;
+    }
     if (!activeDates.year.active && !activeDates.month.active) {
         emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`);
         return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`;
@@ -145,8 +150,12 @@ const currentDate = computed(() => {
         emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`);
         return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`;
     }
-    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1950}`);
-    return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1950}`;
+    if (!activeDates.month.active) {
+        emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/00/${activeDates.year.shown + 1900}`);
+        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/00/${activeDates.year.shown + 1900}`;
+    }
+    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`);
+    return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`;
 });
 
 function changeActiveElement(event: any, on: string) {
@@ -157,10 +166,16 @@ function changeActiveElement(event: any, on: string) {
         }
         if (on === "scrollMonth") {
             activeDates.month.active < 12 ? activeDates.month.active++ : null;
+            if (!activeDates.month.active) {
+                activeDates.month.active = 1;
+            }
             activeDates.month.shown = activeDates.month.active;
         }
         if (on === "scrollYear") {
-            activeDates.year.active < 100 ? activeDates.year.active++ : null;
+            activeDates.year.active < 200 ? activeDates.year.active++ : null;
+            if (!activeDates.year.active) {
+                activeDates.year.active = 1;
+            }
             activeDates.year.shown = activeDates.year.active;
         }
     } else {
@@ -221,7 +236,7 @@ function scrollBottom(on: any) {
         activeDates.month.shown = activeDates.month.active;
     }
     if (on === "scrollYear") {
-        activeDates.year.active < 100 ? activeDates.year.active++ : null;
+        activeDates.year.active < 200 ? activeDates.year.active++ : null;
         activeDates.year.shown = activeDates.year.active;
     }
     detectScroll(on);
@@ -251,7 +266,7 @@ function detectScroll(on: any) {
 }
 
 function changeDate(date: string) {
-    date = date.replaceAll('/', '');
+    date = date.replace(/[^\d]/g, '');
 
     let days: any = date.slice(0, 2);
     let months: any = date.slice(2, 4);
@@ -265,7 +280,6 @@ function changeDate(date: string) {
         if (days < 1) {
             days = 1;
         }
-
         activeDates.day.active = days;
         activeDates.day.shown = days;
 
@@ -296,12 +310,12 @@ function changeDate(date: string) {
     }
 
     if (years.length == 4) {
-        years = +years - 1950;
+        years = +years - 1900;
         if (years < 1) {
             years = 1;
         }
-        if (years > 100) {
-            years = 100;
+        if (years > 200) {
+            years = 200;
         }
 
         activeDates.year.active = years;
@@ -322,7 +336,7 @@ watch(show, () => {
         activeDates.month.active = +values[1];
         activeDates.month.shown = activeDates.month.active;
 
-        activeDates.year.active = +values[2] - 1950;
+        activeDates.year.active = +values[2] - 1900;
         activeDates.year.shown = activeDates.year.active;
 
         setTimeout(() => {
@@ -337,18 +351,17 @@ watch(show, () => {
 });
 watch(props, () => {
     const values = props.modelValue.split('/');
-
     activeDates.day.active = +values[0];
     activeDates.day.shown = activeDates.day.active;
 
     activeDates.month.active = +values[1];
     activeDates.month.shown = activeDates.month.active;
 
-    activeDates.year.active = +values[2] - 1950;
+    activeDates.year.active = +values[2] - 1900;
     activeDates.year.shown = activeDates.year.active;
 }, {
     deep: true
-})
+});
 
 onMounted(() => {
     document.querySelectorAll('.scroll-main').forEach((item) => {

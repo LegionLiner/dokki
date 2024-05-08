@@ -25,16 +25,17 @@ watch(inputValue, () => {
 onMounted(() => {
     inputValue.value = props.currentDate as string;
 
-    inputRef.value.addEventListener('keydown', (event) => {
-        if (event.key !== 'Backspace') {
-            if (inputValue.value.length == 2) {
-                inputValue.value += "/";
+    inputRef.value.addEventListener('input', (event) => {
+        inputRef.value.value = inputRef.value.value.replace(/[^/\d]/g, '');
+        if (event.inputType !== 'deleteContentBackward' && event.inputType !== 'deleteContentForward') {
+            if (inputRef.value?.value.length == 2) {
+                inputValue.value += '/';
             }
-            if (inputValue.value.length == 5) {
-                inputValue.value += "/";
+            if (inputRef.value?.value.length == 5) {
+                inputValue.value += '/';
             }
-            if (inputValue.value.length >= 10) {
-                inputValue.value = inputValue.value.slice(0, 9);
+            if (inputRef.value?.value.length > 10) {
+                inputValue.value = inputValue.value.slice(0, 10);
             }
         }
     });
