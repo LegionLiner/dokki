@@ -195,21 +195,35 @@ function changeActiveElement(event: any, on: string) {
     detectScroll(on);
 }
 function changeActiveElementMobile(event: any, on: string) {
-    const activeElement = Math.ceil(event.target.parentElement.scrollTop / 38);
+    let act = 0;
 
-    if (on === "scrollDay") {
-        activeDates.day.active = activeElement;
-        activeDates.day.shown = activeDates.day.active;
-    }
-    if (on === "scrollMonth") {
-        activeDates.month.active = activeElement;
-        activeDates.month.shown = activeDates.month.active;
-    }
-    if (on === "scrollYear") {
-        activeDates.year.active = activeElement;
-        activeDates.year.shown = activeDates.year.active;
-    }
-    detectScroll(on);
+    let int = setInterval(() => {
+        const activeElement = Math.ceil(event.target.parentElement.scrollTop / 38);
+
+        if (act !== activeElement) {
+            act = activeElement;
+        } else {
+            if (on === "scrollDay") {
+                activeDates.day.active = activeElement;
+                activeDates.day.shown = activeDates.day.active;
+            }
+            if (on === "scrollMonth") {
+                activeDates.month.active = activeElement;
+                activeDates.month.shown = activeDates.month.active;
+            }
+            if (on === "scrollYear") {
+                activeDates.year.active = activeElement;
+                activeDates.year.shown = activeDates.year.active;
+            }
+            detectScroll(on);
+
+            setTimeout(() => {
+                detectScroll(on);
+            }, 100);
+
+            clearInterval(int);
+        }
+    }, 100)
 }
 function scrollTop(on: any) {
     if (on === "scrollDay") {
