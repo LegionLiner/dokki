@@ -219,11 +219,11 @@ function changeActiveElementMobile(event: any, on: string) {
 
             setTimeout(() => {
                 detectScroll(on);
-            }, 100);
+            }, 150);
 
             clearInterval(int);
         }
-    }, 100)
+    }, 150)
 }
 function scrollTop(on: any) {
     if (on === "scrollDay") {
@@ -357,7 +357,7 @@ watch(show, () => {
             detectScroll("scrollDay");
             detectScroll("scrollMonth");
             detectScroll("scrollYear");
-        }, 100);
+        }, 50);
     }
 }, {
     deep: true,
