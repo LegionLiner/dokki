@@ -4,7 +4,7 @@
       {{ $t("signature") }}
     </h2>
     <div class="sign bg-white pa-md-6 pa-3">
-      <div class="d-flex align-center">
+      <div v-if="!previewImage" class="d-flex align-center">
         <v-label
           class="sign__label rounded-s-lg px-5 align-self-stretch d-flex font-weight-medium text-white"
           for="uploadSignature"

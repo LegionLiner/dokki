@@ -102,7 +102,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['button:click', 'update:modelValue']);
 
-let values = [0, 1, 1901];
+let values = [1, 1, 1901];
 if (props.modelValue) {
     values = props.modelValue.split('/');
 }
@@ -137,25 +137,24 @@ const activeDays = computed(() => {
     return day || 31;
 });
 const currentDate = computed(() => {
-    console.log(activeDates, 'activeDates');
     if (!activeDates.year.active && !activeDates.month.active && !activeDates.day.active) {
         emit('update:modelValue', ``);
         return ``;
     }
     if (!activeDates.year.active && !activeDates.month.active) {
         emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`);
-        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}`;
+        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown > 0 ? activeDates.day.shown : 1}`}`;
     }
     if (!activeDates.year.active) {
         emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`);
-        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`;
+        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown > 0 ? activeDates.day.shown : 1}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}`;
     }
     if (!activeDates.month.active) {
         emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/00/${activeDates.year.shown + 1900}`);
-        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/00/${activeDates.year.shown + 1900}`;
+        return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown > 0 ? activeDates.day.shown : 1}`}/01/${activeDates.year.shown + 1900}`;
     }
-    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`);
-    return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`;
+    emit('update:modelValue', `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown > 0 ? activeDates.day.shown : 1}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`);
+    return `${activeDates.day.shown > 9 ? activeDates.day.shown : `0${activeDates.day.shown > 0 ? activeDates.day.shown : 1}`}/${activeDates.month.shown > 9 ? activeDates.month.shown : `0${activeDates.month.shown}`}/${activeDates.year.shown + 1900}`;
 });
 
 function changeActiveElement(event: any, on: string) {
@@ -485,7 +484,6 @@ document.addEventListener('click', (e: any) => {
 .date-input-wrapper {
     width: 100%;
     border: 1px solid rgb(205, 221, 245);
-    ;
     background: white;
     border-radius: 10px;
     padding: 8px 4px 8px 14px;
@@ -510,6 +508,7 @@ document.addEventListener('click', (e: any) => {
 
     .date-input {
         outline: none;
+        width: 70px;
     }
 }
 

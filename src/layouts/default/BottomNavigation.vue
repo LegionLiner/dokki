@@ -106,6 +106,17 @@ const btnStyle = computed(() => {
 <style lang="scss">
 @import "src/styles/vuetify/vars.scss";
 @import "vuetify/lib/styles/settings/_variables";
+#v-menu-29 .v-overlay__content {
+  border: none !important;
+
+  .v-list-item--nav {
+    color: white !important;
+  }
+}
+.v-list--subnav {
+  box-shadow: none !important;
+  border: none !important;
+}
 
 .v-bottom-navigation {
   &--active {

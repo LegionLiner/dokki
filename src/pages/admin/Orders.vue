@@ -38,7 +38,7 @@
         </v-data-table>
         <FlexibleTable v-else :headers="headers" :items="orders" :isOrders="true">
           <template #item.date="{ row: { item } }">
-            <div class="mb-2 my-lg-2 wrap-spaces">
+            <div class="my-lg-2 wrap-spaces">
              {{ formatDate(item.date) }}
             </div>
           </template>

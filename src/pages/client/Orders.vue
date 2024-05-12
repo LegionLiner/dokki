@@ -32,7 +32,7 @@
         <v-data-table v-if="lgAndUp" class="v-table--round v-table--spacing v-table--padding bg-transparent desktop-table" sticky
           :items="orders" :headers="headers" :items-per-page="0">
           <template #item.date="{ item }">
-            <div class="mb-2 my-lg-2 wrap-spaces">
+            <div class="my-lg-2 wrap-spaces">
              {{ formatDate(item.date) }}
             </div>
           </template>
@@ -83,7 +83,7 @@
             :downloadFileUrl="downloadFileUrl" />
           </template>
           <template #item.date="{ row: { item } }">
-            <div class="mb-2 my-lg-2 wrap-spaces">
+            <div class="my-lg-2 wrap-spaces">
              {{ formatDate(item.date) }}
             </div>
           </template>

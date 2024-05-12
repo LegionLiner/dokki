@@ -1,7 +1,7 @@
 <template>
   <div class="photo">
     <div v-if="previewImage">
-      <h3 class="subheader photo__subheader">{{ $t("yourPhoto") }}</h3>
+      <h2 class="subheader photo__subheader">{{ $t("yourPhoto") }}</h2>
       <div class="photo__preview">
         <img :src="previewImage" alt="user" class="photo__photo" />
         <img
@@ -70,6 +70,7 @@ watch(
 </script>
 <style lang="scss" scoped>
 .photo {
+  margin-top: -13px;
   &__preview {
     width: fit-content;
     position: relative;
@@ -94,7 +95,8 @@ watch(
   }
 
   &__subheader {
-    margin-bottom: 10px;
+    margin-bottom: 17px;
+    font-size: 1.5em;
   }
 
   &__container {

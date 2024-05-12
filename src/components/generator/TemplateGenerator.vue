@@ -205,7 +205,7 @@
             <template #title>
               <div class="d-flex justify-space-between align-center">
                 <div class="text-medium-emphasis">
-                  {{ subfield?.title }}
+                  {{ subfield?.title.toUpperCase() }}
                 </div>
                 <Close @click="isSubfieldsModalShown = false" class="cursor-pointer"></Close>
               </div>
@@ -475,7 +475,8 @@ const isSubfieldSaveDisabled = computed<boolean | undefined>(() => {
 });
 
 const isWholeFormValid = computed<boolean | undefined>(() => {
-  if (!payloadData.value || !isBaseFormValid.value) {
+  console.log(payloadData.value.fields, payloadData.value.fields.length);
+  if ((payloadData.value.fields.length > 1) && !isBaseFormValid.value) {
     // if no payload yet
     // or base form is invalid
     // there is no need to proceed
@@ -494,6 +495,11 @@ const isWholeFormValid = computed<boolean | undefined>(() => {
   const templateFields = payloadData.value.fields.filter(({ source }) =>
     [Source.TEMPLATE, Source.TEMPLATE_MRZ, Source.TEMPLATE_PN].includes(source),
   );
+  const dateFields = payloadData.value.fields.filter(({ source }) =>
+    [Source.RANDOMDATE, Source.USER_DATESELECTOR, Source.RANDOMDATEWITHCALENDAR].includes(source),
+  );
+
+  console.log(dateFields, 'dateFields');
 
   if (photoField && !photoField.file) {
     return false;
@@ -528,6 +534,16 @@ const isWholeFormValid = computed<boolean | undefined>(() => {
         return !value;
       });
     });
+    if (notFilled) {
+      return false;
+    }
+  }
+  if (dateFields?.length) {
+    const notFilled = dateFields.some(({ value }) => {
+      if (!value?.length) {
+        return true;
+      }
+    })
     if (notFilled) {
       return false;
     }
@@ -1302,7 +1318,7 @@ watch(templateData, (value) => {
     return;
   }
 
-  if (!value.fields.length) {
+  if (!value.fields.length) { // || value.fields.length === 1
     // unblock save button if no fields
     // PN generator as example
     isBaseFormValid.value = true;
