@@ -190,7 +190,7 @@
             }}
             <Cross @click="editFieldDialogShown = false" class="cursor-pointer"></Cross>
           </v-card-title>
-          <v-card-text>
+          <v-card-text class="admin-form">
             <v-form v-model="fieldFormIsValid" validate-on="blur">
               <UserFieldForm
                 v-model:item="editField"
@@ -760,3 +760,13 @@ onBeforeMount(async () => {
   await Promise.allSettled([fetchCountries(), fetchParentTemplates()]);
 });
 </script>
+
+<style lang="scss">
+.admin-form {
+  padding-left: 20px;
+
+  + .action-buttons {
+    margin-left: 12px;
+  }
+}
+</style>

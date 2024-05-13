@@ -137,6 +137,9 @@ const activeDays = computed(() => {
     return day || 31;
 });
 const currentDate = computed(() => {
+    if (activeDates.day.active == 'first') {
+        return `${activeDates.day.shown}`;
+    }
     if (!activeDates.year.active && !activeDates.month.active && !activeDates.day.active) {
         emit('update:modelValue', ``);
         return ``;
@@ -299,6 +302,11 @@ function changeDate(date: string) {
         detectScroll("scrollDay");
     } else if (days.length == 0) {
         activeDates.day.active = null;
+    } else {
+        activeDates.day.active = 'first';
+        activeDates.day.shown = days;
+
+        detectScroll("scrollDay");
     }
 
     if (months.length == 2) {

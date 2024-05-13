@@ -106,7 +106,7 @@ const btnStyle = computed(() => {
 <style lang="scss">
 @import "src/styles/vuetify/vars.scss";
 @import "vuetify/lib/styles/settings/_variables";
-#v-menu-29 .v-overlay__content {
+#v-menu-29 .v-overlay__content, #v-menu-35 .v-overlay__content {
   border: none !important;
 
   .v-list-item--nav {
@@ -193,5 +193,9 @@ const btnStyle = computed(() => {
 .icon-center {
     display: flex;
     justify-content: center;
+    svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 </style>

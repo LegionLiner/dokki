@@ -1,6 +1,5 @@
 <template>
   <v-dialog
-    persistent
     :model-value="modelValue"
     :width="576"
     @update:model-value="$emit(`update:modelValue`, $event)"
@@ -58,7 +57,7 @@ defineEmits(["save", "close", "update:modelValue"]);
     margin-right: 10px;
   }
   .action-buttons {
-    margin-left: 10px;
+    // margin-left: 10px;
     button {
       padding: 12px 24px;
       height: auto;

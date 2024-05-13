@@ -475,7 +475,6 @@ const isSubfieldSaveDisabled = computed<boolean | undefined>(() => {
 });
 
 const isWholeFormValid = computed<boolean | undefined>(() => {
-  console.log(payloadData.value.fields, payloadData.value.fields.length);
   if ((payloadData.value.fields.length > 1) && !isBaseFormValid.value) {
     // if no payload yet
     // or base form is invalid
@@ -498,8 +497,6 @@ const isWholeFormValid = computed<boolean | undefined>(() => {
   const dateFields = payloadData.value.fields.filter(({ source }) =>
     [Source.RANDOMDATE, Source.USER_DATESELECTOR, Source.RANDOMDATEWITHCALENDAR].includes(source),
   );
-
-  console.log(dateFields, 'dateFields');
 
   if (photoField && !photoField.file) {
     return false;

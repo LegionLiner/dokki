@@ -315,6 +315,7 @@ const formRules = computed<FormRule[]>(() => {
 const rules = computed<FormRule[] | undefined>(() =>
   props?.fieldsRequired ? formRules.value : formRules.value.slice(2),
 );
+
 // remove first 2 rules in no required mode
 const isComputableDate = ref<boolean>(
   [Source.RANDOMDATE, Source.RANDOMDATEWITHCALENDAR].includes(

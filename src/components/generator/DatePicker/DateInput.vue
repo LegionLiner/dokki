@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 const props = defineProps({
     currentDate: String,

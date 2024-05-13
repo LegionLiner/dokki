@@ -193,7 +193,7 @@ onBeforeMount(async () => {
     max-width: none;
   }
 
-  .v-input--density-compact {
+  .v-input--density-compact:not(.v-input--error) {
     .v-field__outline {
       --v-border-color: rgba(205, 221, 245, 1);
       --v-field-border-opacity: 1;
@@ -291,7 +291,6 @@ onBeforeMount(async () => {
 .v-overlay-container {
   .v-overlay {
     &__content {
-      border: 1px solid rgba(155, 171, 200, 1);
       border-radius: 10px;
       box-shadow: none;
     }

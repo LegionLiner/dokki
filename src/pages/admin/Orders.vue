@@ -358,7 +358,7 @@ onBeforeMount(async () => {
   text-overflow: ellipsis;
 }
 
-.v-input--density-compact {
+.v-input--density-compact:not(.v-input--error) {
   .v-field__outline {
     --v-border-color: rgba(205, 221, 245, 1);
     --v-field-border-opacity: 1;

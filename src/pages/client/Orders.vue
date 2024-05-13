@@ -110,7 +110,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <pagination v-model="page" density="compact" :length="pages" :disabled="loading" />
+        <pagination v-model="page" density="compact" size="large" :length="pages" :disabled="loading" />
       </v-col>
     </v-row>
     <v-dialog v-model="deleteDialogShown" width="auto">
@@ -208,7 +208,7 @@ const isShort = computed<boolean>(() => display.width.value < 1600);
 const isMobile = computed<boolean>(() => display.width.value < 600);
 const fetching = reactive<Record<string, FetchFile>>({});
 const downloadFileUrl = ref<string>(
-  `${import.meta.env.VITE_API_ADDRESS}/order/file/`,
+  `${import.meta.env.VITE_API_ADDRESS}order/file/`,
 );
 const countriesLoading = ref<boolean>(false);
 const countriesData = ref<Country[]>([]);
@@ -626,7 +626,7 @@ onBeforeMount(async () => {
     grid-template-columns: auto 1fr;
   }
 
-  .v-input--density-compact {
+  .v-input--density-compact:not(.v-input--error) {
     .v-field__outline {
       --v-border-color: rgba(205, 221, 245, 1);
       --v-field-border-opacity: 1;
